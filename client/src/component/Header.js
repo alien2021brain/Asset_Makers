@@ -25,7 +25,10 @@ function Header() {
 
   const navigate = useNavigate();
   return (
-    <header className="bg-[#054850] shadow-md">
+    <header
+      className="bg-[#054850]  fixed top-0 left-0 right-0 "
+      style={{ zIndex: 10 }}
+    >
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to="/">
           <img
@@ -103,7 +106,7 @@ function Header() {
               ABOUT US
             </li>
           </Link>
-          <Link to="/about">
+          <Link to="/contact-us">
             <li className="hidden sm:inline text-[#F5E994]  hover:underline">
               CONTACT US
             </li>
@@ -116,7 +119,13 @@ function Header() {
                 alt="profile"
               />
             ) : (
-              <li className=" text-[#F5E994]  hover:underline"> SIGN IN</li>
+              <Link
+                to={"/sign-in"}
+                className=" text-[#F5E994]  hover:underline"
+              >
+                {" "}
+                SIGN IN
+              </Link>
             )}
           </Link>
         </ul>

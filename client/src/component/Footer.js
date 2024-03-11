@@ -5,23 +5,23 @@ function Footer() {
   return (
     <div className="bg-[#054850] shadow-md text-[#F5E994]  py-10  w-full ">
       <div className="grid md:grid-cols-4 max-w-6xl mx-auto p-3">
-        <div className="1 space-y-5 mr-10">
-          <h2>ABOUT</h2>
-          <p>
+        <div className="1 space-y-5 mr-10  ">
+          <h2 className="text-[#F5E994]">ABOUT</h2>
+          <p className="text-[#F5E994]">
             We are real estate professionals that thrive to fill the gap between
             property sellers and buyers. We offer quality services at unbeatable
             prices to ensure client satisfaction.
           </p>
         </div>
         <div className="2 space-y-5">
-          <h2>CONTACT INFO</h2>
+          <h2 className="text-[#F5E994]">CONTACT INFO</h2>
           <div className="space-y-3">
-            <p>+91 9243024730</p>
-            <p>+91 9243024730</p>
+            <p className="text-[#F5E994]">+91 9243024730</p>
+            <p className="text-[#F5E994]">+91 9243024730</p>
             <a target="_blank" href="mailto:info@assetmakers.com">
               info@assetmakers.com
             </a>
-            <p>
+            <p className="text-[#F5E994]">
               #02, Level 5, Dhruti Arcade,
               <br />
               Insight Academy Lane,
@@ -31,7 +31,7 @@ function Footer() {
           </div>
         </div>
         <div className="3 space-y-5">
-          <h2>Properties</h2>
+          <h2 className="text-[#F5E994]">Properties</h2>
           <div className="space-y-3 flex flex-col">
             <Link to={"/"}>Apartments</Link>
             <Link to={"/"}>Villas</Link>
@@ -41,7 +41,7 @@ function Footer() {
           </div>
         </div>
         <div className="4 space-y-5">
-          <h2>Quick Links</h2>
+          <h2 className="text-[#F5E994]">Quick Links</h2>
           <div className="space-y-3 flex flex-col">
             <Link to={"/"}>Home</Link>
             <Link to={"/"}>About Us</Link>

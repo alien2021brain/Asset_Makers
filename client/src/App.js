@@ -5,14 +5,19 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import Home from "./pages/Home";
+import SignUp from "./pages/Signup";
+import SignIn from "./pages/Login";
+import ContactUs from "./pages/ContactUs";
 
 const Layout = () => {
   return (
     <>
       <Header />
 
-      <Outlet />
-      <Footer />
+      <div className="mt-16">
+        <Outlet />
+        <Footer />
+      </div>
     </>
   );
 };
@@ -25,6 +30,18 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/sign-in",
+        element: <SignIn />,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp />,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
       },
     ],
   },
