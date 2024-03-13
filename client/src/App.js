@@ -8,8 +8,10 @@ import Home from "./pages/Home";
 import SignUp from "./pages/Signup";
 import SignIn from "./pages/Login";
 import ContactUs from "./pages/ContactUs";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
+import List from "./pages/List/List";
+import SinglePage from "./pages/singlepage/SinglePage";
 
 const Layout = () => {
   return (
@@ -44,6 +46,18 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs />,
+      },
+      {
+        path: "/list",
+        element: <List />,
+      },
+      {
+        path: "/list/:filters?",
+        element: <List />,
+      },
+      {
+        path: "/:id",
+        element: <SinglePage />,
       },
     ],
   },

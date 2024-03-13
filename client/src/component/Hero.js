@@ -12,11 +12,29 @@ import { GiVillage } from "react-icons/gi";
 import { FaKeycdn } from "react-icons/fa";
 import { AiOutlineTransaction } from "react-icons/ai";
 import Exploretypes from "./Explore";
+import {  useNavigate } from "react-router-dom";
 import { motion, useScroll } from "framer-motion";
 function Hero() {
   const [rent, setRent] = React.useState("BUY");
   const [category, setCategory] = useState("Apartments");
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const [filters, setFilters] = useState({
+    location: "",
+    type: "",
+    minPrice: "",
+    maxPrice: "",
+    property: "",
+    bedroom: "",
+  });
+  // Handle filter changes
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
+  };
   const handleRent = (event) => {
     const {
       target: { value },
@@ -114,6 +132,12 @@ function Hero() {
       typeof value === "string" ? value.split(",") : value
     );
   };
+
+  // const handleSearch
+  const handleSearch = () => {
+    const encodeFilter = encodeURIComponent(JSON.stringify(filters));
+    navigate(`/list/${encodeFilter}`);
+  };
   return (
     <>
       <div className="bg-[#054850] text-white ">
@@ -136,7 +160,10 @@ function Hero() {
                 className="h-full px-2 text-black" // Added text-black class here
                 placeholder="Search..."
               />
-              <button className="bg-blue-600 text-white flex items-center h-full px-2 w-full">
+              <button
+                className="bg-blue-600 text-white flex items-center h-full px-2 w-full"
+                onClick={handleSearch}
+              >
                 <p>Search</p>
                 <FcSearch size={32} />
               </button>

@@ -8,6 +8,7 @@ function Header() {
   const [currentUser, setCurrentUser] = useState(false);
   const [citieOpen, setOpenCities] = useState(false);
   const [propOpen, setOpenProp] = useState(false);
+
   const dropdownRef = useRef(null);
   useEffect(() => {
     function handleClickOutside(event) {
@@ -27,7 +28,7 @@ function Header() {
   return (
     <header
       className="bg-[#054850]  fixed top-0 left-0 right-0 "
-      style={{ zIndex: 10 }}
+      style={{ zIndex: 100 }}
     >
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to="/">
