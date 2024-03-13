@@ -10,28 +10,28 @@ import { useEffect } from "react";
 function List() {
   const data = listData;
   const { filters } = useParams();
-  useEffect(() => {
-    fetchData(JSON.parse(filters));
-  }, [filters]);
-  const fetchData = async (filters) => {
-    console.log("filters", filters);
-    try {
-      // Construct API URL based on filters
-      let apiUrl = "http://localhost:3000/list";
-      if (filters) {
-        const queryParams = Object.entries(filters)
-          .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
-          .join("&");
-        apiUrl += `?${queryParams}`;
-      }
+  // useEffect(() => {
+  //   fetchData(JSON.parse(filters));
+  // }, [filters]);
+  // const fetchData = async (filters) => {
+  //   console.log("filters", filters);
+  //   try {
+  //     // Construct API URL based on filters
+  //     let apiUrl = "http://localhost:3000/list";
+  //     if (filters) {
+  //       const queryParams = Object.entries(filters)
+  //         .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+  //         .join("&");
+  //       apiUrl += `?${queryParams}`;
+  //     }
 
-      // const response = await fetch(apiUrl);
-      // const jsonData = await response.json();
-      // setData(jsonData);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  //     // const response = await fetch(apiUrl);
+  //     // const jsonData = await response.json();
+  //     // setData(jsonData);
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
   return (
     <Container>
       <div className="listPage ">
