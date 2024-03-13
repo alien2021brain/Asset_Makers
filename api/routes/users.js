@@ -1,9 +1,18 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const {
+  deleteUser,
+  getUser,
+  getUsers,
+  updateUser,
+} = require("../controller/users.js");
+const verifyToken = require("../middleware/jwt.js");
+
+const router = express.Router();
+
+router.get("/", verifyToken, getUsers);
+router.delete("/:id", verifyToken, deleteUser);
+router.get("/:id", getUser);
+router.get("/:id", verifyToken, updateUser);
 
 module.exports = router;
