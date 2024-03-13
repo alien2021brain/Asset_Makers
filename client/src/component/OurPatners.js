@@ -61,7 +61,9 @@ const data = [
     img: c8,
   },
 ];
+
 function Patners() {
+ 
   return (
     <section className="clients bg-white">
       <Container className={"py-20 space-y-10"}>
@@ -73,7 +75,7 @@ function Patners() {
           ssr={true} // means to render carousel on server-side.
           infinite={true}
           autoPlay={true}
-          autoPlaySpeed={1000}
+          autoPlaySpeed={2000}
           keyBoardControl={true}
           customTransition="all .5"
           transitionDuration={500}
@@ -107,7 +109,7 @@ function Patners() {
             <div className="1 flex items-center gap-5">
               <FaSellsy className="text-white" size={42} />
               <div>
-                <h2 className="price">2,000 +</h2>
+                <h2 className="price">2000 +</h2>
                 <p className="description">Properties Sold</p>
               </div>
             </div>
