@@ -7,6 +7,7 @@ import { FaMapLocation } from "react-icons/fa6";
 import { FaMailBulk } from "react-icons/fa";
 import Lottie from "lottie-react";
 import Contactus from "../public/contact-us.json";
+import { motion, useScroll } from "framer-motion"
 
 function ContactUs() {
   return (
@@ -24,8 +25,9 @@ function ContactUs() {
               instantly, you can choose to call us or email us.{" "}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 space-y-5">
-              <div className="flex items-center gap-3">
-                <FcCallback size={52} />
+              <motion.div  className="flex items-center gap-3">
+                <motion.div whileHover={{ scale: 1.5 ,textShadow:"0px 0px 8px #fcfeff",boxShadow:"0px 0px 8px #0c61c9",borderRadius:"50%"}}><FcCallback size={52} /></motion.div>
+                
                 <p>
                   Call us
                   <br />
@@ -33,16 +35,18 @@ function ContactUs() {
                   <br />
                   +91 7022856908
                 </p>
-              </div>
+              </motion.div>
               <div className="flex items-center gap-3">
-                <FaMapLocation size={52} className="text-[#2196F3]" />
+                <motion.div  whileHover={{ scale: 1.5 ,textShadow:"0px 0px 8px #fcfeff",boxShadow:"0px 0px 8px #0c61c9",borderRadius:"25%"}}><FaMapLocation size={52} className="text-[#2196F3]" /></motion.div>
+                
                 <p>
                   #02, Level 5, Dhruti Arcade, Insight
                   <br /> Academy Lane, Marathalli, Bangalore, 560103
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <FaMailBulk size={52} className="text-[#2196F3]" />
+                <motion.div whileHover={{ scale: 1.5 ,textShadow:"0px 0px 8px #fcfeff",boxShadow:"0px 0px 8px #0c61c9",borderRadius:"25%"}}> <FaMailBulk size={52} className="text-[#2196F3]" /></motion.div>
+               
                 <p>
                   Have any Questions?
                   <br />
@@ -50,7 +54,8 @@ function ContactUs() {
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <FaMailBulk size={52} className="text-[#2196F3]" />
+                <motion.div whileHover={{ scale: 1.5 ,textShadow:"0px 0px 8px #fcfeff",boxShadow:"0px 0px 8px #0c61c9",borderRadius:"25%"}}><FaMailBulk size={52} className="text-[#2196F3]" /></motion.div>
+                
                 <p>
                   Monday — Friday
                   <br />
@@ -90,9 +95,9 @@ function ContactUs() {
               rows={4}
               className="hover:border-blue-200 hover:border"
             />
-            <button className="border bg-violet-500 py-3 rounded-md text-white">
+            <motion.button  whileHover={{ scale: 1.1 ,textShadow:"0px 0px 8px #fcfeff",boxShadow:"0px 0px 8px #0c61c9"}} className="border bg-violet-500 py-3 rounded-md text-white">
               Submit
-            </button>
+            </motion.button>
           </div>
         </div>
       </Container>

@@ -12,7 +12,8 @@ import { GiVillage } from "react-icons/gi";
 import { FaKeycdn } from "react-icons/fa";
 import { AiOutlineTransaction } from "react-icons/ai";
 import Exploretypes from "./Explore";
-import { json, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { motion, useScroll } from "framer-motion";
 function Hero() {
   const [rent, setRent] = React.useState("BUY");
   const [category, setCategory] = useState("Apartments");
@@ -154,9 +155,9 @@ function Hero() {
             />
             <div className="search flex items-center bg-white border h-[52px] rounded-md mt-3 w-[320px] justify-between overflow-hidden">
               <input
-                name="search"
+                name="search text-black"
                 value={search}
-                className="h-full px-2"
+                className="h-full px-2 text-black" // Added text-black class here
                 placeholder="Search..."
               />
               <button
@@ -192,11 +193,16 @@ function Hero() {
         <Container className={"space-y-5 "}>
           <h2 className="text-center text-2xl ">The Best Apartments</h2>
 
-          <div className="grid grid-cols-3 ">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 3.5, duration: 15, stiffness: 500 }}
+            className="grid grid-cols-3 "
+          >
             {appartments.map((item) => (
               <PropertyCard card={item} />
             ))}
-          </div>
+          </motion.div>
         </Container>
       </section>
       <section
@@ -207,16 +213,38 @@ function Hero() {
           <h2 className="text-center text-2xl ">What sets us apart?</h2>
 
           <div className="grid grid-cols-3 gap-5">
-            <div className="card shadow-md p-4 text-center space-y-3 ">
-              <GiVillage size={200} className="mx-auto text-blue-900" />
+            <motion.div className="card shadow-md p-4 text-center space-y-3 ">
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                scale={{ delay: 2, duration: 5 }}
+                whileTap={{
+                  scale: 0.8,
+                  rotate: -90,
+                  borderRadius: "100%",
+                }}
+              >
+                <GiVillage size={200} className="mx-auto text-blue-900" />
+              </motion.div>
+
               <h2>WIDE RANGE OF PROPERTIES</h2>
               <p>
                 Our customers have a wide range of options to choose from and
                 they are all verified by our team.
               </p>
-            </div>
+            </motion.div>
             <div className="card shadow-md p-4 text-center space-y-3">
-              <FaKeycdn size={200} className="mx-auto text-blue-900" />
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                scale={{ delay: 3, duration: 5 }}
+                whileTap={{
+                  scale: 0.8,
+                  rotate: -90,
+                  borderRadius: "100%",
+                }}
+              >
+                <FaKeycdn size={200} className="mx-auto text-blue-900" />
+              </motion.div>
+
               <h2>SEAMLESS EXPERIENCE</h2>
               <p>
                 We give our best to every client and make the process seamless,
@@ -224,10 +252,21 @@ function Hero() {
               </p>
             </div>
             <div className="card shadow-md p-4 text-center space-y-3">
-              <AiOutlineTransaction
-                size={200}
-                className="mx-auto text-blue-900"
-              />
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                scale={{ delay: 3, duration: 5 }}
+                whileTap={{
+                  scale: 0.8,
+                  rotate: -90,
+                  borderRadius: "100%",
+                }}
+              >
+                <AiOutlineTransaction
+                  size={200}
+                  className="mx-auto text-blue-900"
+                />
+              </motion.div>
+
               <h2>TRANSACTION SERVICES</h2>
               <p>
                 Transaction services are offered with a holistic approach to
