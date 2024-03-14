@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import moment from "moment";
 
 export const getComments = (req, res) => {
-  const q = `SELECT c.*, u.id AS userId, name, profilePic FROM comments AS c JOIN users AS u ON (u.id = c.userId)
+  const q = `SELECT c.*, u.id AS userId, username, avatar FROM comment AS c JOIN users AS u ON (u.id = c.userId)
     WHERE c.postId = ? ORDER BY c.createdAt DESC
     `;
 
@@ -14,50 +14,47 @@ export const getComments = (req, res) => {
   });
 };
 
+// Add Comments
 export const addComment = (req, res) => {
-  const token = req.cookies.accessToken;
-  if (!token) return res.status(401).json("Not logged in!");
+  // authorization
+  if (req.userId !== req.params.userId) {
+    return next(createError(401, "first login"));
+  }
 
-  jwt.verify(token, "secretkey", (err, userInfo) => {
-    if (err) return res.status(403).json("Token is not valid!");
+  const q =
+    "INSERT INTO comments(`comment`, `createdAt`, `userId`, `listId`,`rating`) VALUES (?)";
+  const values = [
+    req.body.comment,
+    moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+    req.userId,
+    req.body.listId,
+    req.body.rating,
+  ];
 
-    const q =
-      "INSERT INTO comments(`desc`, `createdAt`, `userId`, `postId`) VALUES (?)";
-    const values = [
-      req.body.desc,
-      moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-      userInfo.id,
-      req.body.postId,
-    ];
-
-    db.query(q, [values], (err, data) => {
-      if (err) return res.status(500).json(err);
-      return res.status(200).json("Comment has been created.");
-    });
+  db.query(q, [values], (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json("Comment has been created.");
   });
 };
 
+// Delete Comments
 export const deleteComment = (req, res) => {
-  const token = req.cookies.access_token;
-  if (!token) return res.status(401).json("Not authenticated!");
+  // authorization
+  if (req.userId !== req.body.userId) {
+    return next(createError(401, "first login"));
+  }
+  const commentId = req.params.id;
+  const q = "DELETE FROM comments WHERE `id` = ? AND `userId` = ?";
 
-  jwt.verify(token, "jwtkey", (err, userInfo) => {
-    if (err) return res.status(403).json("Token is not valid!");
-
-    const commentId = req.params.id;
-    const q = "DELETE FROM comments WHERE `id` = ? AND `userId` = ?";
-
-    db.query(q, [commentId, userInfo.id], (err, data) => {
-      if (err) return res.status(500).json(err);
-      if (data.affectedRows > 0) return res.json("Comment has been deleted!");
-      return res.status(403).json("You can delete only your comment!");
-    });
+  db.query(q, [commentId, req.id], (err, data) => {
+    if (err) return res.status(500).json(err);
+    if (data.affectedRows > 0) return res.json("Comment has been deleted!");
+    return res.status(403).json("You can delete only your comment!");
   });
 };
 
 module.exports = {
   getComments,
   addComment,
-  updateComment,
   deleteComment,
 };

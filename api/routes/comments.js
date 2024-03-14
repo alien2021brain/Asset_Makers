@@ -3,9 +3,9 @@ const {
   getComments,
   addComment,
 
-  updateComment,
   deleteComment,
 } = require("../controller/comments");
+const verify = require("../middleware/jwt");
 var router = express.Router();
 
 /* get comments */
@@ -14,11 +14,11 @@ router.get("/", getComments);
 // SingleComment
 
 /* update lsitItem */
-router.post("/:listId", addComment);
+router.post("/:userId", verify, addComment);
 
-/* update lsitItem */
-router.patch("/:listId", updateComment);
+// /* update lsitItem */
+// router.patch("/:listId", verify, updateComment);
 /* delete lsitItem */
-router.delete("/:listId", deleteComment);
+router.delete("/:id", verify, deleteComment);
 
 module.exports = router;

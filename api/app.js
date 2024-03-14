@@ -6,7 +6,7 @@ require("dotenv").config();
 var listingsRouter = require("./routes/listings");
 var usersRouter = require("./routes/users");
 var authRouter = require("./routes/auth");
-
+var cors = require("cors");
 const db = require("./connect");
 
 var app = express();
@@ -20,7 +20,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 app.use("/list", listingsRouter);
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
