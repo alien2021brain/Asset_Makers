@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,17 +7,21 @@ export default function SignUp() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
-  const handleSubmit = async (e) => {
+  console.log("form", formData);
+  // api url
+  const url = "http://localhost:8000";
+  const postUsers = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/api/auth/signup", {
+      const res = await fetch(`${url}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +46,7 @@ export default function SignUp() {
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={postUsers} className="flex flex-col gap-4">
         <input
           type="text"
           placeholder="username"

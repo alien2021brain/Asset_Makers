@@ -42,12 +42,13 @@ export default function SelectPlaceholder({
   personName,
   setPersonName,
   handleChange,
+  width,
 }) {
   const theme = useTheme();
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
+      <FormControl sx={{ m: 1, width: width, mt: 3 }}>
         <Select
           displayEmpty
           value={personName}

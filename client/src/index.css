@@ -9,12 +9,18 @@
   font-family: "Poppins", sans-serif;
 }
 h2 {
-  @apply text-[#303441];
+  @apply text-[#0F172A];
+  font-weight: 400;
+  font-size: 28px;
 }
 p {
-  @apply text-gray-600;
+  @apply text-[#727272];
 }
-
+h3 {
+  @apply text-[#FECE51];
+  font-weight: 500;
+  font-size: 16px;
+}
 .image-container {
   display: inline-block;
   position: relative;
@@ -46,13 +52,16 @@ p {
   height: 100%;
   justify-content: center;
   left: 0;
-  opacity: 0;
+  font-family: Poppins;
   position: absolute;
   top: 0;
   transition: opacity 0.3s ease-in-out;
   width: 100%;
 }
-
+.transparent-style {
+  background-color: #ffffff;
+  opacity: 0.6;
+}
 .text {
   color: #fff;
   font-size: 18px;

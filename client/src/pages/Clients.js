@@ -48,7 +48,7 @@ const data = [
 ];
 function Clients() {
   return (
-    <section className="clients bg-[#F2F2F2]">
+    <section className="clients bg-[#F0F9FF]">
       <Container className={"py-20 space-y-10"}>
         <h2 className="text-center text-4xl">Our Clients Say</h2>
         <Carousel
@@ -58,10 +58,10 @@ function Clients() {
           ssr={true} // means to render carousel on server-side.
           infinite={true}
           autoPlay={true}
-          autoPlaySpeed={1000}
+          autoPlaySpeed={3000}
           keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={500}
+          customTransition="all 300ms ease-in-out"
+          transitionDuration={300}
           containerClass="carousel-container"
           removeArrowOnDeviceType={["tablet", "mobile"]}
           dotListClass="custom-dot-list-style"

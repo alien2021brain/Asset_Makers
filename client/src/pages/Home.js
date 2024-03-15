@@ -3,14 +3,23 @@ import Hero from "../component/Hero";
 import EnquiryForm from "../component/EnquiryForm";
 import Clients from "./Clients";
 import Patners from "../component/OurPatners";
+import HomePage from "../component/newHero/hero";
+import TopCities from "../component/TopCities";
+import Apart from "../component/Apart";
 
 function Home() {
   return (
     <div className="">
+      <HomePage />
+
       <Hero />
-      <EnquiryForm />
-      <Clients />
+      <Apart />
+      {/* <EnquiryForm /> */}
+
       <Patners />
+      <TopCities />
+
+      <Clients />
     </div>
   );
 }

@@ -53,8 +53,8 @@ function Filter() {
           <label htmlFor="bedroom">Bedroom</label>
           <input type="text" id="bedroom" name="bedroom" placeholder="any" />
         </div>
-        <button className="border bg-yellow-600 w-24  mt-5 rounded-md shadow-lg">
-          <CiSearch size={43} className="text-white mx-auto " />
+        <button className="border bg-yellow-600 w-24  mt-4 rounded-md shadow-lg  ">
+          <CiSearch size={35} className="text-white mx-auto " />
         </button>
       </div>
     </div>

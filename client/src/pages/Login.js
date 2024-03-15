@@ -14,11 +14,12 @@ export default function SignIn() {
       [e.target.id]: e.target.value,
     });
   };
+  const url = "http://localhost:8000";
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch("/api/auth/signin", {
+      const res = await fetch(`${url}/auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

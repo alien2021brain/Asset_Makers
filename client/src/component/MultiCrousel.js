@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import PropertyCard from "./PropertyCard";
+import TopPropertyCard from "./TopPropertyCard";
 
 const responsive = {
   superLargeDesktop: {
@@ -22,29 +23,31 @@ const responsive = {
     items: 1,
   },
 };
-function MultiCrousel({ data }) {
+function MultiCrousel({ data, autoplay, details }) {
   return (
     <Carousel
       swipeable={true}
       draggable={true}
-      responsive={responsive}
-      ssr={true} // means to render carousel on server-side.
+      ssr={true}
       infinite={true}
-      autoPlay={true}
-      autoPlaySpeed={1000}
+      autoPlay={autoplay ? false : true} // Or set to `false` for manual control
+      autoPlaySpeed={2000}
       keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
+      customTransition="transform 300ms ease-in-out" // Adjust timing and easing as needed
+      transitionDuration={300} // Optional: Matches customTransition timing
       containerClass="carousel-container"
       removeArrowOnDeviceType={["tablet", "mobile"]}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
+      responsive={responsive}
     >
-      {data.map((item) => (
-        <>
-          <PropertyCard card={item} />
-        </>
-      ))}
+      {data.map((item) =>
+        details ? (
+          <PropertyCard key={item.id} card={item} />
+        ) : (
+          <TopPropertyCard key={item.id} card={item} />
+        ) // Ensure unique keys for slides
+      )}
     </Carousel>
   );
 }

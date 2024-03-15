@@ -27,7 +27,7 @@ function Header() {
   const navigate = useNavigate();
   return (
     <header
-      className="bg-[#054850]  fixed top-0 left-0 right-0 "
+      className="bg-slate-900  fixed top-0 left-0 right-0 "
       style={{ zIndex: 100 }}
     >
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">

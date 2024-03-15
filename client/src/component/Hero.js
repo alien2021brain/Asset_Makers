@@ -12,8 +12,12 @@ import { GiVillage } from "react-icons/gi";
 import { FaKeycdn } from "react-icons/fa";
 import { AiOutlineTransaction } from "react-icons/ai";
 import Exploretypes from "./Explore";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion, useScroll } from "framer-motion";
+import Lottie from "lottie-react";
+import cityLottie from "../public/top-cities.json";
+import cloufLottie from "../public/wave.json";
+
 function Hero() {
   const [rent, setRent] = React.useState("BUY");
   const [category, setCategory] = useState("Apartments");
@@ -50,24 +54,21 @@ function Hero() {
       title: "Samanvaya Lotus Lea",
       description: "2455 Area Details 2021 Year Built",
       price: "9000000",
-      imgUrl:
-        "https://img.freepik.com/free-photo/blue-house-with-blue-roof-sky-background_1340-25953.jpg",
+      imgUrl: "/h1.jpg",
     },
     {
       key: 2,
       title: "Samanvaya Lotus Lea",
       description: "2455 Area Details 2021 Year Built",
       price: "1000000",
-      imgUrl:
-        "https://media.istockphoto.com/id/483773209/photo/new-cozy-cottage.jpg?s=612x612&w=0&k=20&c=y1rwmoHBg-ZoE7L5WkIWjrTmwXofzqIbozTJyftDu1E=",
+      imgUrl: "/h2.jpg",
     },
     {
       key: 3,
       title: "Samanvaya Lotus Lea",
       description: "2455 Area Details 2021 Year Built",
       price: "6000000",
-      imgUrl:
-        "https://assets.architecturaldigest.in/photos/60083e76274aca243711c3a4/16:9/w_2560%2Cc_limit/ghaziabad-uttar-pradesh-homes-photos-1366x768.jpg",
+      imgUrl: "/h3.jpg",
     },
   ];
   const appartments = [
@@ -102,24 +103,21 @@ function Hero() {
       title: "Samanvaya Lotus Lea",
       description: "2455 Area Details 2021 Year Built",
       price: "9000000",
-      imgUrl:
-        "https://img.freepik.com/free-photo/blue-house-with-blue-roof-sky-background_1340-25953.jpg",
+      imgUrl: "/h1.jpg",
     },
     {
       key: 2,
       title: "Samanvaya Lotus Lea",
       description: "2455 Area Details 2021 Year Built",
       price: "1000000",
-      imgUrl:
-        "https://media.istockphoto.com/id/483773209/photo/new-cozy-cottage.jpg?s=612x612&w=0&k=20&c=y1rwmoHBg-ZoE7L5WkIWjrTmwXofzqIbozTJyftDu1E=",
+      imgUrl: "/h2.jpg",
     },
     {
       key: 3,
       title: "Samanvaya Lotus Lea",
       description: "2455 Area Details 2021 Year Built",
       price: "6000000",
-      imgUrl:
-        "https://assets.architecturaldigest.in/photos/60083e76274aca243711c3a4/16:9/w_2560%2Cc_limit/ghaziabad-uttar-pradesh-homes-photos-1366x768.jpg",
+      imgUrl: "/h3.jpg",
     },
   ];
 
@@ -140,72 +138,140 @@ function Hero() {
   };
   return (
     <>
-      <div className="bg-[#054850] text-white ">
-        <Container>
-          <form className="inputshero flex items-center gap-10">
-            <SelectPlaceholder
-              personName={rent}
-              setPersonName={setRent}
-              handleChange={handleRent}
-            />
-            <SelectPlaceholder
-              personName={category}
-              setPersonName={setCategory}
-              handleChange={handleCategory}
-            />
-            <div className="search flex items-center bg-white border h-[52px] rounded-md mt-3 w-[320px] justify-between overflow-hidden">
-              <input
-                name="search text-black"
-                value={search}
-                className="h-full px-2 text-black" // Added text-black class here
-                placeholder="Search..."
-              />
-              <button
-                className="bg-blue-600 text-white flex items-center h-full px-2 w-full"
-                onClick={handleSearch}
-              >
-                <p>Search</p>
-                <FcSearch size={32} />
-              </button>
-            </div>
-          </form>
-        </Container>
-      </div>
-      <SingleCrousel data={heroData} />
-
-      <section className="featured-listings space-y-5">
-        <Container className={"space-y-5 "}>
-          <h2 className="text-center text-2xl ">
-            Discover Our Featured Listings
-          </h2>
+      <section className=" relative featured-listings space-y-5 mt-5">
+        <Lottie
+          animationData={cloufLottie}
+          loop={true}
+          className="absolute top-0 left-0 right-0"
+        />
+        <Container className={"space-y-5  pt-64"}>
+          <h2 className="text-center  ">Discover Our Featured Listings</h2>
           <p className="text-center ">
             A few properties you can buy with your eyes closed. Properties that
             are verified. Buy with confidence and 100% assurance.
           </p>
-          <MultiCrousel data={Featured} />
+          <MultiCrousel data={Featured} details={true} />
         </Container>
       </section>
-      <Exploretypes />
-      <section
-        className="Best-Apartments
- py-8 bg-[#F0F4F7]"
-      >
-        <Container className={"space-y-5 "}>
-          <h2 className="text-center text-2xl ">The Best Apartments</h2>
+      {/* <Exploretypes /> */}
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 3.5, duration: 15, stiffness: 500 }}
-            className="grid grid-cols-3 "
-          >
-            {appartments.map((item) => (
-              <PropertyCard card={item} />
-            ))}
-          </motion.div>
+      <section className="top-cities my-10 ">
+        <Container className={"space-y-3"}>
+          <h2>Top Cities In India</h2>
+          <p>Best places to live in India</p>
+          <hr className="bg-[#FECE51] w-32 h-1" />
+
+          <div className="places py-7 flex items-center gap-5">
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+              <img
+                src="/bangalore.png"
+                className="object-cover w-full h-[60%] "
+              />
+              <h3 className="text-center">Bangalore</h3>
+              <p className="text-center text-xs font-light">1000+ properties</p>
+            </div>
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+              <img src="/delhi.png" className="object-cover w-full h-[60%] " />
+              <h3 className="text-center">Delhi</h3>
+              <p className="text-center text-xs font-light">5000+ properties</p>
+            </div>
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+              <img src="/pune.png" className="object-cover w-full h-[60%] " />
+              <h3 className="text-center">Pune</h3>
+              <p className="text-center text-xs font-light">1000+ properties</p>
+            </div>
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+              <img
+                src="/hyderabad.png"
+                className="object-cover w-full h-[60%] "
+              />
+              <h3 className="text-center">Hyderabad</h3>
+              <p className="text-center text-xs font-light">1000+ properties</p>
+            </div>
+
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+              <img
+                src="/tripuati.jpg"
+                className="object-cover w-full h-[60%] "
+              />
+              <h3 className="text-center">Triputati</h3>
+              <p className="text-center text-xs font-light">1000+ properties</p>
+            </div>
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+              <img
+                src="/bangalore.png"
+                className="object-cover w-full h-[60%] "
+              />
+              <h3 className="text-center">Bangalore</h3>
+              <p className="text-center text-xs font-light">1000+ properties</p>
+            </div>
+          </div>
         </Container>
       </section>
-      <section
+
+      {/* Feature Collection in Top Cities */}
+      <section className="feature-collection my-10 ">
+        <Container className={"space-y-3"}>
+          <h2>Featured Collection in Top Cities</h2>
+          <p>Curated & Handpicked Properties</p>
+          <hr className="bg-[#FECE51] w-32 h-1" />
+
+          <div className="collection flex items-center gap-5  ">
+            <div className="w-1/3 h-72 rounded-md shadow-md p-4 overflow-hidden group relative">
+              <img
+                src="https://images.moneycontrol.com/static-mcnews/2023/10/BeFunky-collage-2023-10-19T142541.707.jpg"
+                className="h-full w-full object-cover shadow-inner group-hover:blur-sm transition-all duration-1000 shadow-black  "
+              />
+              <div className="absolute bottom-5 w-[91%] p-4  bg-black opacity-55 group-hover:bg-transparent">
+                <h3 className="text-center text-white">Bangalore</h3>
+                <p className="text-center text-xs  text-white">
+                  1000+ properties
+                </p>
+              </div>
+            </div>
+            <div className="w-1/3 h-72 space-y-3">
+              <div className="h-1/2 w-full rounded-md shadow-md p-2 group relative">
+                <img
+                  src="https://qph.cf2.quoracdn.net/main-qimg-761eda8931ce2b553ae7618ae8424087.webp"
+                  className="h-full w-full object-cover shadow-inner  group-hover:blur-sm transition-all duration-1000"
+                />
+                <div className="absolute bottom-2 w-[95%] p-1  bg-black opacity-55 group-hover:bg-transparent">
+                  <h3 className="text-center text-white">Hyderabad</h3>
+                  <p className="text-center text-xs  text-white">
+                    12000+ properties
+                  </p>
+                </div>
+              </div>
+              <div className="h-1/2 w-full rounded-md shadow-md p-1 group relative">
+                <img
+                  src="https://homebazaar-blog.s3.ap-south-1.amazonaws.com/knowledge/wp-content/uploads/2023/05/11104405/FeatureImage_Top-10-Cheapest-Cities-In-India-20231-732x375.jpg"
+                  className="h-full w-full object-cover shadow-inner shadow-black group-hover:blur-sm transition-all duration-1000"
+                />
+                <div className="absolute bottom-1 w-[97%] p-1  bg-black opacity-55 group-hover:bg-transparent">
+                  <h3 className="text-center text-white">Triputai</h3>
+                  <p className="text-center text-xs  text-white">
+                    1000+ properties
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="w-1/3 h-72 rounded-md shadow-md p-4 group relative">
+              <img
+                src="https://homebazaar-blog.s3.ap-south-1.amazonaws.com/knowledge/wp-content/uploads/2023/05/12054434/Bangalore.jpg"
+                className="h-full w-full object-cover shadow-inner shadow-black group-hover:blur-sm transition-all duration-1000"
+              />
+              <div className="absolute bottom-5 w-[91%] p-4  bg-black opacity-55 group-hover:bg-transparent">
+                <h3 className="text-center text-white">Bangalore</h3>
+                <p className="text-center text-xs  text-white">
+                  1000+ properties
+                </p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* <section
         className="Best-Apartments
  py-8 "
       >
@@ -276,7 +342,7 @@ function Hero() {
             </div>
           </div>
         </Container>
-      </section>
+      </section> */}
     </>
   );
 }

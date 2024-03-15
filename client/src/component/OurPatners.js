@@ -63,11 +63,12 @@ const data = [
 ];
 
 function Patners() {
- 
   return (
     <section className="clients bg-white">
-      <Container className={"py-20 space-y-10"}>
-        <h2 className="text-center text-4xl">Our Partners</h2>
+      <Container className={"py-20 space-y-5"}>
+        <h2>Featured Builders In India</h2>
+        <p>The most reputed builders in India</p>
+        <hr className="bg-[#FECE51] w-32 h-1" />
         <Carousel
           swipeable={true}
           draggable={true}
@@ -82,17 +83,19 @@ function Patners() {
           containerClass="carousel-container"
           removeArrowOnDeviceType={["tablet", "mobile"]}
           dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
+          itemClass="carousel-item-padding-50-px"
+          className="py-10"
         >
           {data.map((item) => (
-            <div className="card space-y-5 ml-5">
+            <div className="card space-y-5 ml-5 p-4 shadow-inner shadow-md  bg-white rounded-md">
               <img src={item.img} />
               <p>{item.message}</p>
             </div>
           ))}
         </Carousel>
       </Container>
-      <section className="footerPatner  bg-black ">
+      {/* required */}
+      {/* <section className="footerPatner  bg-black ">
         <Container className={"py-20 flex items-center justify-between"}>
           <div className="left space-y-5 w-1/2">
             <h2 className="text-white font-bold text-4xl whitespace-nowrap">
@@ -136,7 +139,7 @@ function Patners() {
             </div>
           </div>
         </Container>
-      </section>
+      </section> */}
     </section>
   );
 }
