@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <div className="bg-slate-900 shadow-md text-[#F5E994]  py-10  w-full ">
+    <div className="bg-slate-900 shadow-md text-[#F5E994]  py-10  w-full padingm  ">
       <div className="grid md:grid-cols-4 max-w-6xl mx-auto p-3">
         <div className="1 space-y-5 mr-10  ">
           <h2 className="text-[#F5E994]">ABOUT</h2>

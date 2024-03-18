@@ -138,13 +138,13 @@ function Hero() {
   };
   return (
     <>
-      <section className=" relative featured-listings space-y-5 mt-5">
+      <section className=" relative featured-listings space-y-5 mt-5 padingm ">
         <Lottie
           animationData={cloufLottie}
           loop={true}
           className="absolute top-0 left-0 right-0"
         />
-        <Container className={"space-y-5  pt-64"}>
+        <Container className={"space-y-5  md:pt-64 pt-20"}>
           <h2 className="text-center  ">Discover Our Featured Listings</h2>
           <p className="text-center ">
             A few properties you can buy with your eyes closed. Properties that
@@ -161,8 +161,8 @@ function Hero() {
           <p>Best places to live in India</p>
           <hr className="bg-[#FECE51] w-32 h-1" />
 
-          <div className="places py-7 flex items-center gap-5">
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+          <div className="places py-7 md:flex md:flex-row flex-col justify-center md:justify-between items-center gap-5 mx-auto">
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
               <img
                 src="/bangalore.png"
                 className="object-cover w-full h-[60%] "
@@ -170,17 +170,17 @@ function Hero() {
               <h3 className="text-center">Bangalore</h3>
               <p className="text-center text-xs font-light">1000+ properties</p>
             </div>
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
               <img src="/delhi.png" className="object-cover w-full h-[60%] " />
               <h3 className="text-center">Delhi</h3>
               <p className="text-center text-xs font-light">5000+ properties</p>
             </div>
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40  mx-auto md:mx-0 mb-5 md:mb-0">
               <img src="/pune.png" className="object-cover w-full h-[60%] " />
               <h3 className="text-center">Pune</h3>
               <p className="text-center text-xs font-light">1000+ properties</p>
             </div>
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
               <img
                 src="/hyderabad.png"
                 className="object-cover w-full h-[60%] "
@@ -189,7 +189,7 @@ function Hero() {
               <p className="text-center text-xs font-light">1000+ properties</p>
             </div>
 
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
               <img
                 src="/tripuati.jpg"
                 className="object-cover w-full h-[60%] "
@@ -197,7 +197,7 @@ function Hero() {
               <h3 className="text-center">Triputati</h3>
               <p className="text-center text-xs font-light">1000+ properties</p>
             </div>
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 ">
+            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
               <img
                 src="/bangalore.png"
                 className="object-cover w-full h-[60%] "
@@ -217,7 +217,7 @@ function Hero() {
           <hr className="bg-[#FECE51] w-32 h-1" />
 
           <div className="collection flex items-center gap-5  ">
-            <div className="w-1/3 h-72 rounded-md shadow-md p-4 overflow-hidden group relative">
+            <div className="w-1/3 md:h-72 aspect-square md:aspect-auto rounded-md shadow-md p-4 overflow-hidden group relative">
               <img
                 src="https://images.moneycontrol.com/static-mcnews/2023/10/BeFunky-collage-2023-10-19T142541.707.jpg"
                 className="h-full w-full object-cover shadow-inner group-hover:blur-sm transition-all duration-1000 shadow-black  "
@@ -229,7 +229,7 @@ function Hero() {
                 </p>
               </div>
             </div>
-            <div className="w-1/3 h-72 space-y-3">
+            <div className="w-1/3 h-72 space-y-3 aspect-square md:aspect-auto">
               <div className="h-1/2 w-full rounded-md shadow-md p-2 group relative">
                 <img
                   src="https://qph.cf2.quoracdn.net/main-qimg-761eda8931ce2b553ae7618ae8424087.webp"
@@ -255,7 +255,7 @@ function Hero() {
                 </div>
               </div>
             </div>
-            <div className="w-1/3 h-72 rounded-md shadow-md p-4 group relative">
+            <div className="w-1/3 h-72  rounded-md shadow-md p-4 group relative aspect-square md:aspect-auto">
               <img
                 src="https://homebazaar-blog.s3.ap-south-1.amazonaws.com/knowledge/wp-content/uploads/2023/05/12054434/Bangalore.jpg"
                 className="h-full w-full object-cover shadow-inner shadow-black group-hover:blur-sm transition-all duration-1000"
@@ -270,79 +270,6 @@ function Hero() {
           </div>
         </Container>
       </section>
-
-      {/* <section
-        className="Best-Apartments
- py-8 "
-      >
-        <Container className={"space-y-5 "}>
-          <h2 className="text-center text-2xl ">What sets us apart?</h2>
-
-          <div className="grid grid-cols-3 gap-5">
-            <motion.div className="card shadow-md p-4 text-center space-y-3 ">
-              <motion.div
-                whileHover={{ scale: 1.2, rotate: 360 }}
-                scale={{ delay: 2, duration: 5 }}
-                whileTap={{
-                  scale: 0.8,
-                  rotate: -90,
-                  borderRadius: "100%",
-                }}
-              >
-                <GiVillage size={200} className="mx-auto text-blue-900" />
-              </motion.div>
-
-              <h2>WIDE RANGE OF PROPERTIES</h2>
-              <p>
-                Our customers have a wide range of options to choose from and
-                they are all verified by our team.
-              </p>
-            </motion.div>
-            <div className="card shadow-md p-4 text-center space-y-3">
-              <motion.div
-                whileHover={{ scale: 1.2, rotate: 360 }}
-                scale={{ delay: 3, duration: 5 }}
-                whileTap={{
-                  scale: 0.8,
-                  rotate: -90,
-                  borderRadius: "100%",
-                }}
-              >
-                <FaKeycdn size={200} className="mx-auto text-blue-900" />
-              </motion.div>
-
-              <h2>SEAMLESS EXPERIENCE</h2>
-              <p>
-                We give our best to every client and make the process seamless,
-                from choosing a property to confirming on it and moving in.
-              </p>
-            </div>
-            <div className="card shadow-md p-4 text-center space-y-3">
-              <motion.div
-                whileHover={{ scale: 1.2, rotate: 360 }}
-                scale={{ delay: 3, duration: 5 }}
-                whileTap={{
-                  scale: 0.8,
-                  rotate: -90,
-                  borderRadius: "100%",
-                }}
-              >
-                <AiOutlineTransaction
-                  size={200}
-                  className="mx-auto text-blue-900"
-                />
-              </motion.div>
-
-              <h2>TRANSACTION SERVICES</h2>
-              <p>
-                Transaction services are offered with a holistic approach to
-                ensure that business efficiency and cost savings are fulfilled
-                for clients.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section> */}
     </>
   );
 }

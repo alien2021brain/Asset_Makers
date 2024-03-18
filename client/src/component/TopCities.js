@@ -1,8 +1,36 @@
 import React from "react";
 import Container from "./Container";
 import MultiCrousel from "./MultiCrousel";
-
+import SectionCount from "./SectionCount";
+import {
+  FcBullish,
+  FcDepartment,
+  FcInspection,
+  FcOnlineSupport,
+} from "react-icons/fc";
 function TopCities() {
+  const sectionCounts = [
+    {
+      num: 2000,
+      text: "Properties Sold",
+      Icon: <FcBullish size={42} />,
+    },
+    {
+      num: 80,
+      text: "Projects Handled",
+      Icon: <FcDepartment size={42} />,
+    },
+    {
+      num: 400,
+      text: "NRI Clientele Served",
+      Icon: <FcOnlineSupport size={42} />,
+    },
+    {
+      num: 150,
+      text: "Satisfied Builders",
+      Icon: <FcInspection size={42} />,
+    },
+  ];
   const Featured = [
     {
       key: 1,
@@ -28,7 +56,7 @@ function TopCities() {
   ];
   return (
     <div>
-      <Container className={"flex justify-between py-20 gap-5 "}>
+      <Container className={"md:flex justify-between md:py-20 gap-5 padingm "}>
         <div className="left space-y-5 mt-4">
           <h2>Properties In Top Cities</h2>
           <p>
@@ -36,8 +64,9 @@ function TopCities() {
             budget you prefer. Explore apartments, villas, plots and farmlands
             across the nation.
           </p>
+          <SectionCount numbers={sectionCounts} />
         </div>
-        <div className="shadow-md   w-[60%]">
+        <div className="shadow-md   md:w-[60%] mt-3 md:mt-0">
           <MultiCrousel data={Featured} autoplay={true} />
         </div>
       </Container>

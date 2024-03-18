@@ -13,13 +13,13 @@ function SingleCrousel({ data }) {
       infiniteLoop={true}
       dynamicHeight={true}
       showThumbs={false}
-      className="mt-10 h-full"
+      className="mt-5 h-full"
     >
       {data.map((item) => (
         <div className="md:h-full relative" key={item.id}>
           <img
             src={item.imgUrl}
-            className="object-contain rounded-md"
+            className="object-contain  h-full"
             style={{ zIndex: 1 }}
           />
         </div>

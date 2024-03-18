@@ -64,8 +64,8 @@ const data = [
 
 function Patners() {
   return (
-    <section className="clients bg-white">
-      <Container className={"py-20 space-y-5"}>
+    <section className="clients bg-white -mt-5 padingm ">
+      <Container className={" md:py-20 space-y-5"}>
         <h2>Featured Builders In India</h2>
         <p>The most reputed builders in India</p>
         <hr className="bg-[#FECE51] w-32 h-1" />

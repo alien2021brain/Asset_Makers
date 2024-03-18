@@ -28,7 +28,7 @@ function HomePage() {
     },
   ];
   return (
-    <div className="homePage">
+    <div className="homePage padingm ">
       <div className="textContainer">
         <div className="wrapper">
           <h1 className="title">
@@ -36,6 +36,7 @@ function HomePage() {
             <span>Find</span>
             <span>Real</span>
             <span>Estate</span>
+
             <span>&</span>
             <span>Get</span>
             <br />
@@ -50,13 +51,18 @@ function HomePage() {
             verdant landscapes, inviting you to unwind in unparalleled comfort
             and style.
           </p>
-          <SearchBar />
+          <div className="hidden md:block">
+            <SearchBar />
+          </div>
         </div>
       </div>
 
       <div>
         {/* <img src="/bg.png" alt="" /> */}
         <SingleCrousel data={heroData} />
+        <div className="md:hidden mt-5  mb-32">
+          <SearchBar />
+        </div>
       </div>
     </div>
   );

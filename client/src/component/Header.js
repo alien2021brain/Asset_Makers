@@ -25,6 +25,12 @@ function Header() {
   }, [dropdownRef]);
 
   const navigate = useNavigate();
+  const handleCategoryClick = () => {
+    navigate("/list");
+  };
+  const handleCityClick = () => {
+    navigate("/list");
+  };
   return (
     <header
       className="bg-slate-900  fixed top-0 left-0 right-0 "
@@ -72,9 +78,15 @@ function Header() {
                 citieOpen ? "block transition-all duration-1000" : "hidden"
               } transition-all duration-1000 absolute top-8 right-0 shadow-md bg-white p-10 space-y-5  rounded-md  `}
             >
-              <p className="hover:text-[#F5E994]">Bangalore</p>
-              <p className="hover:text-[#F5E994]">Hydrebad</p>
-              <p className="hover:text-[#F5E994]">Tripui</p>
+              <p className="hover:text-[#F5E994]" onClick={handleCityClick}>
+                Bangalore
+              </p>
+              <p className="hover:text-[#F5E994]" onClick={handleCityClick}>
+                Hydrebad
+              </p>
+              <p className="hover:text-[#F5E994]" onClick={handleCityClick}>
+                Tripui
+              </p>
             </div>
           </button>
           <Link
@@ -90,12 +102,40 @@ function Header() {
                   propOpen ? "block transition-all duration-1000" : "hidden"
                 } transition-all duration-1000 absolute top-8 right-0 shadow-md bg-white p-10 space-y-5  rounded-md  `}
               >
-                <p className="hover:text-[#F5E994] text-black">Apartments</p>
-                <p className="hover:text-[#F5E994] text-black">Villas</p>
-                <p className="hover:text-[#F5E994] text-black">Plots</p>
-                <p className="hover:text-[#F5E994] text-black">Row Houses</p>
-                <p className="hover:text-[#F5E994] text-black">Villaments</p>
-                <p className="hover:text-[#F5E994] text-black">
+                <p
+                  className="hover:text-[#F5E994] text-black"
+                  onClick={handleCategoryClick}
+                >
+                  Apartments
+                </p>
+                <p
+                  className="hover:text-[#F5E994] text-black"
+                  onClick={handleCategoryClick}
+                >
+                  Villas
+                </p>
+                <p
+                  className="hover:text-[#F5E994] text-black"
+                  onClick={handleCategoryClick}
+                >
+                  Plots
+                </p>
+                <p
+                  className="hover:text-[#F5E994] text-black"
+                  onClick={handleCategoryClick}
+                >
+                  Row Houses
+                </p>
+                <p
+                  className="hover:text-[#F5E994] text-black"
+                  onClick={handleCategoryClick}
+                >
+                  Villaments
+                </p>
+                <p
+                  className="hover:text-[#F5E994] text-black"
+                  onClick={handleCategoryClick}
+                >
                   Commercial Properties
                 </p>
                 <p className="hover:text-[#F5E994] text-black">Pent Houses</p>
