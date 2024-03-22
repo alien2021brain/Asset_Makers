@@ -84,10 +84,10 @@ function Patners() {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-50-px"
-          className="py-10"
+          className="py-10 z-10"
         >
           {data.map((item) => (
-            <div className="card space-y-5 ml-5 p-4 shadow-inner shadow-md  bg-white rounded-md">
+            <div className="card space-y-5 ml-5 p-4 shadow-inner  bg-white rounded-md">
               <img src={item.img} />
               <p>{item.message}</p>
             </div>

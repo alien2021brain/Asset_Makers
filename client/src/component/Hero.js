@@ -138,13 +138,13 @@ function Hero() {
   };
   return (
     <>
-      <section className=" relative featured-listings space-y-5 mt-5 padingm ">
+      <section className=" relative featured-listings   padingm bg-white mt-8">
         <Lottie
           animationData={cloufLottie}
           loop={true}
-          className="absolute top-0 left-0 right-0"
+          className="absolute top-0 left-0 right-0 "
         />
-        <Container className={"space-y-5  md:pt-64 pt-20"}>
+        <Container className={"space-y-5  md:pt-64 pt-10"}>
           <h2 className="text-center  ">Discover Our Featured Listings</h2>
           <p className="text-center ">
             A few properties you can buy with your eyes closed. Properties that
@@ -161,8 +161,8 @@ function Hero() {
           <p>Best places to live in India</p>
           <hr className="bg-[#FECE51] w-32 h-1" />
 
-          <div className="places py-7 md:flex md:flex-row flex-col justify-center md:justify-between items-center gap-5 mx-auto">
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
+          <div className="places py-7 md:flex md:flex-row grid grid-cols-2 gap-1 justify-center md:justify-between items-center md:gap-5 mx-auto">
+            <div className="bg-white shadow-md rounded-md w-max  border md:px-8 px-4 md:h-40 h-28  mx-auto md:mx-0 mb-5 md:mb-0">
               <img
                 src="/bangalore.png"
                 className="object-cover w-full h-[60%] "
@@ -170,17 +170,17 @@ function Hero() {
               <h3 className="text-center">Bangalore</h3>
               <p className="text-center text-xs font-light">1000+ properties</p>
             </div>
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
+            <div className="bg-white shadow-md rounded-md w-max  border md:px-8 px-4 md:h-40 h-28  mx-auto md:mx-0 mb-5 md:mb-0">
               <img src="/delhi.png" className="object-cover w-full h-[60%] " />
               <h3 className="text-center">Delhi</h3>
               <p className="text-center text-xs font-light">5000+ properties</p>
             </div>
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40  mx-auto md:mx-0 mb-5 md:mb-0">
+            <div className="bg-white shadow-md rounded-md w-max  border md:px-8 px-4 md:h-40 h-28  mx-auto md:mx-0 mb-5 md:mb-0">
               <img src="/pune.png" className="object-cover w-full h-[60%] " />
               <h3 className="text-center">Pune</h3>
               <p className="text-center text-xs font-light">1000+ properties</p>
             </div>
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
+            <div className="bg-white shadow-md rounded-md w-max  border md:px-8 px-4 md:h-40 h-28  mx-auto md:mx-0 mb-5 md:mb-0">
               <img
                 src="/hyderabad.png"
                 className="object-cover w-full h-[60%] "
@@ -189,7 +189,7 @@ function Hero() {
               <p className="text-center text-xs font-light">1000+ properties</p>
             </div>
 
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
+            <div className="bg-white shadow-md rounded-md w-max  border md:px-8 px-4 md:h-40 h-28  mx-auto md:mx-0 mb-5 md:mb-0">
               <img
                 src="/tripuati.jpg"
                 className="object-cover w-full h-[60%] "
@@ -197,7 +197,7 @@ function Hero() {
               <h3 className="text-center">Triputati</h3>
               <p className="text-center text-xs font-light">1000+ properties</p>
             </div>
-            <div className="bg-white shadow-md rounded-md w-max  border px-8 h-40 mx-auto md:mx-0 mb-5 md:mb-0">
+            <div className="bg-white shadow-md rounded-md w-max  border md:px-8 px-4 md:h-40 h-28  mx-auto md:mx-0 mb-5 md:mb-0">
               <img
                 src="/bangalore.png"
                 className="object-cover w-full h-[60%] "
@@ -210,14 +210,14 @@ function Hero() {
       </section>
 
       {/* Feature Collection in Top Cities */}
-      <section className="feature-collection my-10 ">
+      <section className="feature-collection md:my-10 my-2 bg-white py-5">
         <Container className={"space-y-3"}>
           <h2>Featured Collection in Top Cities</h2>
           <p>Curated & Handpicked Properties</p>
           <hr className="bg-[#FECE51] w-32 h-1" />
 
-          <div className="collection flex items-center gap-5  ">
-            <div className="w-1/3 md:h-72 aspect-square md:aspect-auto rounded-md shadow-md p-4 overflow-hidden group relative">
+          <div className="collection md:flex items-center md:gap-5  ">
+            <div className="md:w-1/3 md:h-72  rounded-md shadow-md md:p-4 p-1 group relative  md:aspect-auto">
               <img
                 src="https://images.moneycontrol.com/static-mcnews/2023/10/BeFunky-collage-2023-10-19T142541.707.jpg"
                 className="h-full w-full object-cover shadow-inner group-hover:blur-sm transition-all duration-1000 shadow-black  "
@@ -229,7 +229,7 @@ function Hero() {
                 </p>
               </div>
             </div>
-            <div className="w-1/3 h-72 space-y-3 aspect-square md:aspect-auto">
+            <div className="md:w-1/3 h-72 md:space-y-3  flex items-center md:block gap-5">
               <div className="h-1/2 w-full rounded-md shadow-md p-2 group relative">
                 <img
                   src="https://qph.cf2.quoracdn.net/main-qimg-761eda8931ce2b553ae7618ae8424087.webp"
@@ -255,12 +255,12 @@ function Hero() {
                 </div>
               </div>
             </div>
-            <div className="w-1/3 h-72  rounded-md shadow-md p-4 group relative aspect-square md:aspect-auto">
+            <div className="md:w-1/3 md:h-72  rounded-md shadow-md p-4 group relative ">
               <img
                 src="https://homebazaar-blog.s3.ap-south-1.amazonaws.com/knowledge/wp-content/uploads/2023/05/12054434/Bangalore.jpg"
                 className="h-full w-full object-cover shadow-inner shadow-black group-hover:blur-sm transition-all duration-1000"
               />
-              <div className="absolute bottom-5 w-[91%] p-4  bg-black opacity-55 group-hover:bg-transparent">
+              <div className="absolute bottom-5 w-[91%]  p-4  bg-black opacity-55 group-hover:bg-transparent">
                 <h3 className="text-center text-white">Bangalore</h3>
                 <p className="text-center text-xs  text-white">
                   1000+ properties

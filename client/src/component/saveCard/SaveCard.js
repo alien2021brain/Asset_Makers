@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
-import "./card.scss";
+import "./savecard.scss";
+import { MdDelete } from "react-icons/md";
 
 import { useState } from "react";
-import DialogProperty from "./DialogProperty";
+import DialogProperty from "../card/DialogProperty";
+import { Tooltip } from "@mui/material";
 
-function Card({ item }) {
+function SaveCard({ item }) {
   console.log(item, "hii");
   const [open, setOpen] = useState(false);
   const handleClose = () => {
@@ -43,12 +45,16 @@ function Card({ item }) {
               </div>
             </div>
             <div className="icons">
-              <Link to={"/saved-list"} className="icon">
-                <img src="/save.png" alt="" />
-              </Link>
-              <div className="icon" onClick={() => setOpen(true)}>
-                <img src="/chat.png" alt="" />
-              </div>
+              <Tooltip title="chat">
+                <div className="icon" onClick={() => setOpen(true)}>
+                  <img src="/chat.png" alt="" />
+                </div>
+              </Tooltip>
+              <Tooltip title="Delete">
+                <div className="icon" onClick={() => setOpen(true)}>
+                  <MdDelete size={22} className="text-red-600" />
+                </div>
+              </Tooltip>
             </div>
           </div>
         </div>
@@ -56,4 +62,4 @@ function Card({ item }) {
     </>
   );
 }
-export default Card;
+export default SaveCard;

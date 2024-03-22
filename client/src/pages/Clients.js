@@ -66,11 +66,12 @@ function Clients() {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
+          className="z-10"
         >
           {data.map((item) => (
             <div className="card space-y-5 ml-5">
               <div className="flex item gap-3">
-                <div className="rounded-full  border-2 border-blue-600 p-1 overflow-hidden w-[64px] h-[64px]">
+                <div className="rounded-full  border-2 border-blue-600 p-1 overflow-hidden md:w-[64px] md:h-[64px] w-[40px] h-[40px]">
                   <img
                     alt="profile"
                     className="border rounded-full  h-full w-full  border-black"

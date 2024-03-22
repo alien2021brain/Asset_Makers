@@ -17,7 +17,7 @@ function Apart() {
       <Container className={"px-5"}>
         <div className="bg-[#F0F9FF] md:h-80 border p-5 px-10 rounded-lg md:relative  ">
           <div className="flex justify-between gap-5">
-            <div className="heading flex items-center gap-2 ">
+            <div className="heading md:flex items-center gap-2 mb-2 ">
               <FcDonate size={52} />
               <div className="">
                 <h2 className="text-smc">What sets us apart?</h2>

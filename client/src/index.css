@@ -8,6 +8,13 @@
   padding: 0;
   font-family: "Poppins", sans-serif;
 }
+body {
+  background-color: #f7f7f8;
+}
+.menuitem.Mui-selected {
+  color: red;
+  border: 1px solid red;
+}
 h2 {
   @apply text-[#0F172A];
   font-weight: 400;

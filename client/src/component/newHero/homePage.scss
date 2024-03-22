@@ -3,12 +3,14 @@
 .homePage {
   display: flex;
   flex-direction: row;
-  height: 100%;
-  margin-bottom: 50px;
+  height: 90vh;
+  align-items: center;
+
   @include sm {
     padding: 10px;
     flex-direction: column;
     margin-top: 10px;
+    height: 100%;
   }
   .textContainer {
     flex: 3;
@@ -41,8 +43,9 @@
         font-size: 64px;
         display: inline-block;
         @include sm {
-          width: 100px;
-          display: block;
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
           font-size: 40px;
         }
         span {

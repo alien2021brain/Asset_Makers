@@ -5,7 +5,7 @@ import Card from "../../component/card/card";
 import Container from "../../component/Container";
 import Map from "../../component/map/map";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function List() {
   const data = listData;
@@ -32,22 +32,25 @@ function List() {
   //     console.error("Error fetching data:", error);
   //   }
   // };
+
   return (
-    <Container>
-      <div className="listPage ">
-        <div className="listContainer">
-          <div className="wrapper">
-            <Filter />
-            {data.map((item) => (
-              <Card key={item.id} item={item} />
-            ))}
+    <>
+      <Container>
+        <div className="listPage ">
+          <div className="listContainer">
+            <div className="wrapper">
+              <Filter />
+              {data.map((item) => (
+                <Card key={item.id} item={item} />
+              ))}
+            </div>
+          </div>
+          <div className="mapContainer h-full ">
+            <Map items={data} />
           </div>
         </div>
-        <div className="mapContainer h-full ">
-          <Map items={data} />
-        </div>
-      </div>
-    </Container>
+      </Container>
+    </>
   );
 }
 

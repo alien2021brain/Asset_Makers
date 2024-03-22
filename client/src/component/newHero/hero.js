@@ -60,7 +60,7 @@ function HomePage() {
       <div>
         {/* <img src="/bg.png" alt="" /> */}
         <SingleCrousel data={heroData} />
-        <div className="md:hidden mt-5  mb-32">
+        <div className="md:hidden  mb-32 mt-3">
           <SearchBar />
         </div>
       </div>

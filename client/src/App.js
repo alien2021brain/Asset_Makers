@@ -12,7 +12,17 @@ import { motion } from "framer-motion";
 
 import List from "./pages/List/List";
 import SinglePage from "./pages/singlepage/SinglePage";
+import AdminHeader from "./admin/Component/AdminHeader";
+import AdminHome from "./admin/Pages/AdminHome";
 
+import Adminlist from "./admin/Pages/List/Adminlist";
+import SinglelistItem from "./admin/Pages/List/SinglelistItem";
+import City from "./admin/Pages/City/City";
+import MyList from "./pages/MyList";
+import SavedList from "./pages/SavedList";
+import SideBar from "./admin/Component/Sidebar/SideBar";
+import SingleCity from "./admin/Pages/City/SingleCity";
+import { GiVillage } from "react-icons/gi";
 const Layout = () => {
   return (
     <>
@@ -22,6 +32,18 @@ const Layout = () => {
         <Outlet />
         <Footer />
       </div>
+    </>
+  );
+};
+
+const AdminLayout = () => {
+  return (
+    <>
+      {/* <AdminHeader /> */}
+
+      <SideBar>
+        <Outlet />
+      </SideBar>
     </>
   );
 };
@@ -48,6 +70,14 @@ const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
+        path: "/my-list",
+        element: <MyList />,
+      },
+      {
+        path: "/saved-list",
+        element: <SavedList />,
+      },
+      {
         path: "/list",
         element: <List />,
       },
@@ -58,6 +88,30 @@ const router = createBrowserRouter([
       {
         path: "/:id",
         element: <SinglePage />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "/admin",
+        element: <AdminHome />,
+      },
+
+      {
+        path: "/admin/list/:id",
+        element: <SinglelistItem />,
+      },
+
+      {
+        path: "/admin/city",
+        element: <City />,
+      },
+      {
+        path: "/admin/city/:id",
+        element: <SingleCity />,
       },
     ],
   },

@@ -40,13 +40,15 @@ function MultiCrousel({ data, autoplay, details }) {
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
       responsive={responsive}
+      className="z-10"
     >
-      {data.map((item) =>
-        details ? (
-          <PropertyCard key={item.id} card={item} />
-        ) : (
-          <TopPropertyCard key={item.id} card={item} />
-        ) // Ensure unique keys for slides
+      {data.map(
+        (item) =>
+          details ? (
+            <PropertyCard key={item.id} card={item} />
+          ) : (
+            <TopPropertyCard key={item.id} card={item} />
+          ) // Ensure unique keys for slides
       )}
     </Carousel>
   );

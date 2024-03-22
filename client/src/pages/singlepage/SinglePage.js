@@ -3,11 +3,22 @@ import Slider from "../../component/slider/slider";
 import Map from "../../component/map/map";
 import { singlePostData, userData } from "../../dummy/dummy";
 import Container from "../../component/Container";
+import DialogProperty from "../../component/card/DialogProperty";
+import { useState } from "react";
 
 function SinglePage() {
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Container className={"py-20"}>
-      {" "}
+      <DialogProperty
+        open={open}
+        setOpen={setOpen}
+        item={singlePostData}
+        handleClose={handleClose}
+      />
       <div className="singlePage">
         <div className="details">
           <div className="wrapper">
@@ -101,7 +112,7 @@ function SinglePage() {
               <Map items={[singlePostData]} />
             </div>
             <div className="buttons">
-              <button>
+              <button onClick={() => setOpen(true)}>
                 <img src="/chat.png" alt="" />
                 Send a Message
               </button>
