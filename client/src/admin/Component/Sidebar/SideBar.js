@@ -38,13 +38,13 @@ const routes = [
     ],
   },
   {
-    path: "/city",
+    path: "/admin/city",
     name: "City",
     icon: <FaCity size={24} />,
     exact: true,
     subRoutes: [
       {
-        path: "/city",
+        path: "/admin/city",
         name: "City List",
         icon: <FaListAlt size={24} />,
       },
@@ -56,12 +56,12 @@ const routes = [
     ],
   },
   {
-    path: "/users",
+    path: "/admin/users",
     name: "Users",
     icon: <FaUser size={24} />,
   },
   {
-    path: "/messages",
+    path: "/admin/messages",
     name: "Messages",
     icon: <MdMessage size={24} />,
   },
@@ -219,7 +219,7 @@ const SideBar = ({ children }) => {
           </section>
         </motion.div>
 
-        <main>{children}</main>
+        <main style={{ width: isOpen ? "80%" : "100%" }}>{children}</main>
       </div>
     </>
   );

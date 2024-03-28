@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const db = require("../connect");
 const transporter = require("../middleware/transpoter");
+const nodemailer = require("nodemailer");
 // Registration endpoint
 const register = (req, res) => {
   //CHECK USER IF EXISTS
@@ -53,9 +54,9 @@ const register = (req, res) => {
 };
 
 const login = (req, res) => {
-  const q = "SELECT * FROM users WHERE username = ?";
+  const q = "SELECT * FROM users WHERE email = ?";
 
-  db.query(q, [req.body.username], (err, data) => {
+  db.query(q, [req.body.email], (err, data) => {
     if (err) return res.status(500).json(err);
     if (data.length === 0) return res.status(404).json("User not found!");
 
@@ -66,6 +67,7 @@ const login = (req, res) => {
 
     if (!checkPassword)
       return res.status(400).json("Wrong password or username!");
+    if (!data[0].verified) return res.status(400).json("Check your email");
 
     const token = jwt.sign({ id: data[0].id }, process.env.JWT_KEY);
 
@@ -91,27 +93,49 @@ const logout = (req, res) => {
 };
 
 // verify email
-const verify = (req, res) => {
-  const userId = req.params.id;
+const verify = async function (req, res) {
+  console.log("hiiiii");
+  const { email, sixDigitOTP } = req.body;
+  if (!email && !sixDigitOTP) {
+    return req.json({
+      msg: "email and otp is required",
+    });
+  } else {
+    let mailTransporter = nodemailer.createTransport({
+      service: "gmail",
+      port: 25,
+      host: "localhost",
+      auth: {
+        user: "contact@infodrive-solutions.com",
+        pass: "pqhvdzpqfefdunzo",
+      },
+    });
 
-  // Construct the SQL query to update user verification
-  const updateUserVerificationQuery = `UPDATE users SET verified = true WHERE id = ?`;
-
-  // Execute the query
-  db.query(updateUserVerificationQuery, [userId], (error, results, fields) => {
-    if (error) {
-      console.error("Error updating user verification:", error);
-      res.status(500).send("Internal Server Error");
-      return;
-    }
-    // Check if any rows were affected by the update
-    if (results.affectedRows === 0) {
-      res.status(404).send("User not found");
-      return;
-    }
-    // Redirect user to localhost:3000
-    res.redirect("http://localhost:3000");
-  });
+    let mailDetails = {
+      from: {
+        name: "Asset Makers",
+        address: "contact@infodrive-solutions.com",
+      },
+      //from: 'ats.admin@infodrive-solutions.com',
+      to: email,
+      subject: "Account Verification",
+      html: `<h3>Hello,</h3>
+      <p>Welcome to our platform! To verify your account, please use the following 6-digit OTP (One-Time Password):</p>
+      <h2>Your OTP: <span style="font-weight: bold; color: blue;">${sixDigitOTP}</span></h2>
+      <p>Please enter this OTP in the verification form to complete the process.</p>`,
+    };
+    mailTransporter.sendMail(mailDetails, function (err, results) {
+      if (err) {
+        console.log("Error Occurs", err);
+        res.status(400).send(err);
+      } else {
+        return res.status(200).json({
+          msg: "sucess",
+          otp: sixDigitOTP,
+        });
+      }
+    });
+  }
 };
 
 module.exports = { login, logout, register, verify };
