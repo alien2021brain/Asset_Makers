@@ -1,16 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AiFillCaretDown } from "react-icons/ai";
-import { FaHamburger } from "react-icons/fa";
+import { AiFillCaretDown, AiFillPropertySafety } from "react-icons/ai";
+import { FaBuilding, FaHamburger, FaHome } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Container from "./Container";
 import { IoMdLogOut } from "react-icons/io";
-import { CiSaveDown2 } from "react-icons/ci";
-import { IoCreateOutline } from "react-icons/io5";
+import { CiLogin, CiSaveDown2 } from "react-icons/ci";
+import { IoBuild, IoCreateOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { Toaster, toast } from "sonner";
 import { signOutUserSuccess } from "../redux/userSlice";
+import { MdApartment, MdGrass, MdHouseSiding, MdVilla } from "react-icons/md";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { GiVikingLonghouse } from "react-icons/gi";
 const variants = {
   open: { opacity: 1, x: 0 },
   closed: { opacity: 0, x: "-100%" },
@@ -18,6 +20,31 @@ const variants = {
 const variants2 = {
   open: { opacity: 1, x: 0 },
   closed: { opacity: 0, x: "-100%" },
+};
+const glowVariants = {
+  glow: {
+    boxShadow: `0 0 0 10px rgba(255, 255, 255, 0.3)`, // Inner white glow
+    transition: {
+      duration: 1, // Animation duration in seconds
+      ease: "easeInOut", // Animation timing function
+      repeat: Infinity, // Repeat the animation infinitely
+      repeatType: "reverse", // Reverse the animation for smooth looping
+    },
+  },
+};
+
+const pendulumVariants = {
+  rest: {
+    rotate: 0,
+  },
+  swing: {
+    rotate: [-10, 10], // Swing between -10 and 10 degrees
+    transition: {
+      duration: 2, // Animation duration in seconds
+      ease: "easeInOut", // Animation timing function
+      repeat: Infinity, // Repeat the animation infinitely
+    },
+  },
 };
 
 function Header() {
@@ -95,7 +122,7 @@ function Header() {
         } fixed top-0 left-0 right-0  transition-all  duration-1000 ease-in-out px-4 md:px-0 `}
         style={{ zIndex: 100 }}
       >
-        <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+        <div className="flex justify-between items-center max-w-7xl mx-auto p-3 md:px-6">
           <Link to="/">
             <img
               src={
@@ -194,64 +221,8 @@ function Header() {
             >
               CONTACT US
             </Link>
-            {currentUser ? (
-              <button
-                onClick={() => setProfile(!profile)}
-                className="hover:underline hidden sm:inline relative"
-              >
-                <img
-                  src={
-                    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-                  }
-                  alt="profie"
-                  className="h-[35px] w-[35px] rounded-full"
-                />
-                {profile && (
-                  <motion.div className="absolute shadow-md rounded-lg p-5  space-y-3 bg-white right-0 ">
-                    {currentUser.admin == 1 && (
-                      <Link
-                        className="flex items-center text-slate-900 gap-2 whitespace-nowrap"
-                        to={"/admin"}
-                      >
-                        {" "}
-                        <MdOutlineAdminPanelSettings size={32} />
-                        Admin Panel
-                      </Link>
-                    )}
-                    <Link
-                      className="flex items-center text-slate-900 gap-2 whitespace-nowrap"
-                      to={"/saved-list"}
-                    >
-                      <CiSaveDown2 size={32} /> Saved List
-                    </Link>
-                    <Link
-                      className="flex items-center text-slate-900 gap-2 whitespace-nowrap"
-                      to={"/my-list"}
-                    >
-                      <IoCreateOutline size={32} /> My List
-                    </Link>
 
-                    <button
-                      className="flex items-center text-slate-900 gap-2 whitespace-nowrap"
-                      onClick={handleLogout}
-                    >
-                      {" "}
-                      <IoMdLogOut size={32} />
-                      Logout{" "}
-                    </button>
-                  </motion.div>
-                )}
-              </button>
-            ) : (
-              <li>
-                <Link
-                  to="/sign-in"
-                  className=" hover:underline hidden sm:inline "
-                >
-                  SIGN IN
-                </Link>
-              </li>
-            )}
+            {/* bigscreen end */}
 
             {/* mobile menu */}
             <div className="block sm:hidden">
@@ -395,6 +366,78 @@ function Header() {
               </motion.div>
             </div>
           </ul>
+
+          {/* Login */}
+          {currentUser ? (
+            <button
+              onClick={() => setProfile(!profile)}
+              className="hover:underline hidden sm:inline relative"
+            >
+              <div className="flex items-center gap-2">
+                <button className="flex items-center gap-2 bg-red-700 text-white  rounded-lg px-3 py-2">
+                  <span> Sell Property </span>
+                  <motion.div animate="swing" variants={pendulumVariants}>
+                    <FaHome size={26} />
+                  </motion.div>
+                </button>
+                <img
+                  src={
+                    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                  }
+                  alt="profie"
+                  className="h-[35px] w-[35px] rounded-full"
+                />
+              </div>
+              {profile && (
+                <motion.div className="absolute shadow-md rounded-lg p-5  space-y-3 bg-white right-0 ">
+                  {currentUser.admin == 1 && (
+                    <Link
+                      className="flex items-center text-slate-900 gap-2 whitespace-nowrap"
+                      to={"/admin"}
+                    >
+                      {" "}
+                      <MdOutlineAdminPanelSettings size={32} />
+                      Admin Panel
+                    </Link>
+                  )}
+                  <Link
+                    className="flex items-center text-slate-900 gap-2 whitespace-nowrap"
+                    to={"/saved-list"}
+                  >
+                    <CiSaveDown2 size={32} /> Saved List
+                  </Link>
+                  <Link
+                    className="flex items-center text-slate-900 gap-2 whitespace-nowrap"
+                    to={"/my-list"}
+                  >
+                    <IoCreateOutline size={32} /> My List
+                  </Link>
+
+                  <button
+                    className="flex items-center text-slate-900 gap-2 whitespace-nowrap"
+                    onClick={handleLogout}
+                  >
+                    {" "}
+                    <IoMdLogOut size={32} />
+                    Logout{" "}
+                  </button>
+                </motion.div>
+              )}
+            </button>
+          ) : (
+            <div className="rigister flex items-center gap-5 ">
+              <Link to={"/sign-in"} className="flex items-center gap-1">
+                <CiLogin size={22} />
+                Login/Register
+              </Link>
+              <button className="flex items-center gap-2 bg-red-700 text-white  rounded-lg px-3 py-2">
+                <span> Sell Property </span>
+                <motion.div animate="swing" variants={pendulumVariants}>
+                  <FaHome size={26} />
+                </motion.div>
+              </button>
+            </div>
+          )}
         </div>
         {active && (
           <motion.div
@@ -405,13 +448,32 @@ function Header() {
             {/* hr */}
             <hr className=" w-full bg-slate-900" />
             <Container className={"flex items-center justify-between"}>
-              <Link to={"/list"}>Apartments</Link>
-              <Link to={"/list"}>Villas</Link>
-              <Link to={"/list"}>Plots</Link>
-              <Link to={"/list"}>Row Houses</Link>
-              <Link to={"/list"}>Villaments</Link>
-              <Link to={"/list"}>Commercial Properties</Link>
-              <Link to={"/list"}>Pent Houses</Link>
+              <Link to={"/list"} className="flex items-center gap-1">
+                <MdApartment size={25} />
+                Apartments
+              </Link>
+              <Link to={"/list"} className="flex items-center gap-1">
+                <MdVilla size={25} />
+                Villas
+              </Link>
+              <Link to={"/list"} className="flex items-center gap-1">
+                <MdGrass size={25} /> Plots
+              </Link>
+              <Link to={"/list"} className="flex items-center gap-1">
+                <MdHouseSiding size={25} />
+                Row Houses
+              </Link>
+              <Link to={"/list"} className="flex items-center gap-1">
+                <FaBuilding size={22} />
+                Villaments
+              </Link>
+              <Link to={"/list"} className="flex items-center gap-1">
+                <AiFillPropertySafety size={25} />
+                Commercial Properties
+              </Link>
+              <Link to={"/list"} className="flex items-center gap-1">
+                <GiVikingLonghouse size={25} /> Pent Houses
+              </Link>
             </Container>
             {/* hr */}
             <hr className=" w-full bg-slate-900" />

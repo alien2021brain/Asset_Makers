@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const db = require("../connect");
-const transporter = require("../middleware/transpoter");
+
 const nodemailer = require("nodemailer");
 // Registration endpoint
 const register = (req, res) => {
@@ -28,26 +28,8 @@ const register = (req, res) => {
       db.query(q, [req.body.username], (err, userDb) => {
         if (err) return res.status(500).json(err);
         if (userDb.length === 0) return res.status(404).json("User not found!");
-        // Send verification email
-        const verificationLink = `http://localhost:${process.env.PORT}/auth/verify/${userDb[0].id}`;
 
-        const mailOptions = {
-          from: "info@assetmakers.com",
-          to: userDb[0].email,
-          subject: "Email Verification",
-          text: `Please click on the following link to verify your email address: ${verificationLink}`,
-        };
-
-        transporter.sendMail(mailOptions, (error, info) => {
-          if (error) {
-            console.error("Error sending email:", error);
-            return res.status(500).json("Error sending verification email");
-          }
-          console.log("Verification email sent:", info.response);
-          return res
-            .status(200)
-            .json("User has been created. Verification email sent.");
-        });
+        return res.status(200).send("User has been created");
       });
     });
   });
@@ -68,17 +50,21 @@ const login = (req, res) => {
     if (!checkPassword)
       return res.status(400).json("Wrong password or username!");
     if (!data[0].verified) return res.status(400).json("Check your email");
+    console.log(data[0], "data");
+    const token = jwt.sign(
+      { id: data[0].id, isAdmin: data[0].admin },
+      process.env.JWT_KEY
+    );
 
-    const token = jwt.sign({ id: data[0].id }, process.env.JWT_KEY);
+    // Decode the token
+    const decodedToken = jwt.decode(token);
+    console.log(decodedToken);
 
     const { password, ...others } = data[0];
 
-    res
-      .cookie("accessToken", token, {
-        httpOnly: true,
-      })
+    return res
       .status(200)
-      .json(others);
+      .json({ message: "Logged in successfully 😊 👌", token, user: others });
   });
 };
 

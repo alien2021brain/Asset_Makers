@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart, signInSuccess, signInFailure } from "../redux/userSlice";
 import { Toaster, toast } from "sonner";
 export default function SignIn() {
+  const [token, setToken] = useState("");
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -15,7 +16,15 @@ export default function SignIn() {
     });
   };
   const url = "http://localhost:8000";
-
+  // useEffect hook to update localStorage when token changes
+  // useEffect(() => {
+  //   if (token) {
+  //     localStorage.setItem("token", token);
+  //   } else {
+  //     localStorage.removeItem("token");
+  //   }
+  // }, [token]);
+  console.log("token", token);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -35,11 +44,12 @@ export default function SignIn() {
         dispatch(signInFailure(data.message || "An error occurred."));
         return;
       }
-
-      toast.success("Login successful");
-      dispatch(signInSuccess(data));
+      console.log("data", data.token);
+      localStorage.setItem("token", data.token);
+      toast.success(data.message);
+      dispatch(signInSuccess(data.user));
       console.log(data);
-      if (data.admin) return navigate("/admin");
+      if (data.user.admin) return navigate("/admin");
       navigate("/");
     } catch (error) {
       toast.error(error.message);

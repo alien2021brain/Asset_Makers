@@ -104,15 +104,17 @@ export default function SignUp() {
           body: JSON.stringify(formData),
         });
         const data = await res.json();
-        if (!data.ok) return toast.error(data);
-        console.log(data);
-        if (data.success === false) {
-          setLoading(false);
-          setError(data.message);
-          return;
-        }
+        // if (!data.ok) return toast.error(data);
+        // console.log(data);
+        // // if (data.success === false) {
+        // //   setLoading(false);
+        // //   setError(data.message);
+        // //   return;
+        // // }
+        toast.success(data);
         setLoading(false);
         setError(null);
+        toast.success(data);
         navigate("/sign-in");
       } else {
         setLoading(false);

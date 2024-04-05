@@ -7,11 +7,12 @@ import HomePage from "../component/newHero/hero";
 import TopCities from "../component/TopCities";
 import Apart from "../component/Apart";
 import NewHero from "../component/Hero/NewHero";
+import ExploreDream from "../component/ExploreDream";
 
 function Home() {
   return (
     <div className="">
-      {/* <HomePage /> */}
+      <HomePage />
       <NewHero />
       <Hero />
       <Apart />
@@ -19,7 +20,8 @@ function Home() {
 
       <Patners />
       <TopCities />
-
+      {/* Explore Section */}
+      <ExploreDream />
       <Clients />
     </div>
   );

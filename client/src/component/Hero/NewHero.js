@@ -1,5 +1,6 @@
 import React from "react";
 import "./newhero.css";
+import { Building, Home, Search } from "lucide-react";
 
 function NewHero() {
   return (
@@ -25,19 +26,46 @@ function NewHero() {
               <form className="space-y">
                 <input placeholder="Type Keyword" />
                 <select>
-                  <option value="0">Select car:</option>
+                  <option value="0">Propery Type</option>
                   <option value="1">Audi</option>
                   <option value="2">BMW</option>
                 </select>
                 <select>
-                  <option value="0">Select car:</option>
+                  <option value="0">Location</option>
                   <option value="1">Audi</option>
                   <option value="2">BMW</option>
                 </select>
               </form>
               <div className="button">
-                <button className="leftButton">Filters</button>
-                <button className="rightButton">Search Now</button>
+                <button className="leftButton">
+                  Filters
+                  <img src="/icon.png" />
+                </button>
+                <button className="rightButton">
+                  Search Now
+                  <Search />
+                </button>
+              </div>
+            </div>
+            <div className="bottomSide">
+              <div className="flexgap1">
+                <img src="/houses.png" alt="home" />
+                <span>Home</span>
+              </div>
+              <div className="flexgap1">
+                <img src="/villa.png" alt="villa" />
+
+                <span>Villa</span>
+              </div>
+              <div className="flexgap1">
+                <img src="/office.png" alt="office" />
+
+                <span>Office</span>
+              </div>
+              <div className="flexgap1">
+                <img src="/apart.png" alt="office" />
+
+                <span>Apartments</span>
               </div>
             </div>
           </div>

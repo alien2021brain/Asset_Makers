@@ -13,18 +13,19 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import ParentApp from "./ParentApp";
 // Create a client
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-    </PersistGate>
-  </Provider>
+  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ParentApp />
+      </PersistGate>
+    </Provider>
+  </QueryClientProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

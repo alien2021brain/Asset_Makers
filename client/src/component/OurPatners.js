@@ -87,7 +87,10 @@ function Patners() {
           className="py-10 z-10"
         >
           {data.map((item) => (
-            <div className="card space-y-5 ml-5 p-4 shadow-inner  bg-white rounded-md">
+            <div
+              className="card space-y-5 ml-5 p-4 shadow-inner  bg-white rounded-md"
+              key={item.id}
+            >
               <img src={item.img} />
               <p>{item.message}</p>
             </div>

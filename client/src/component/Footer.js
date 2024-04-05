@@ -57,7 +57,7 @@ function Footer() {
       </div> */}
 
       <Container className={""}>
-        <div className="top flex items-center justify-between gap-5">
+        <div className=" flex items-center justify-between gap-5">
           <div className="left bg-[#EFB0B0] flex items-center p-5 rounded-md gap-3 py-8 relative">
             <img alt="profile" src="/p1.jpg" className="rounded-md" />
             <div className="space-y-2">
