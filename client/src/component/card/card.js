@@ -3,21 +3,54 @@ import "./card.scss";
 
 import { useState } from "react";
 import DialogProperty from "./DialogProperty";
+import { useMutation } from "@tanstack/react-query";
+import { toast, Toaster } from "sonner";
+import axios from "axios";
+import { queryClient } from "../..";
 
 function Card({ item }) {
-  console.log(item, "hii");
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
   };
+
+  const sendMessage = async (data) => {
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL}/message/add`,
+        data
+      );
+      return res.data;
+    } catch (error) {
+      toast.error("Internal error at Sending Message");
+      console.error(error);
+    }
+  };
+
+  const mutation = useMutation({
+    mutationFn: sendMessage,
+    onSuccess: (success) => {
+      toast.success(success);
+      queryClient.invalidateQueries({ queryKey: "messages" });
+      setOpen(false);
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error("Internal error at Sending Message");
+    },
+  });
+
   return (
     <>
+      <Toaster richColors />
       <DialogProperty
         open={open}
         setOpen={setOpen}
         item={item}
         handleClose={handleClose}
+        mutation={mutation}
       />
+
       <div className="cardProperty flex gap-7">
         <Link to={`/${item.id}`} className="imageContainer">
           <img src={item.img} alt="" />
@@ -56,4 +89,5 @@ function Card({ item }) {
     </>
   );
 }
+
 export default Card;

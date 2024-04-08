@@ -15,14 +15,14 @@ function AdminHome() {
       toast.error("Internal Error");
     }
   };
-  console.log(process.env.REACT_APP_URL, "url");
-  const { isLoading, data } = useQuery({
+
+  const { isLoading, data, isError } = useQuery({
     queryKey: ["propertylist"],
     queryFn: getProperty,
   });
 
   if (isLoading) return "Loading...";
-  console.log(data, "list");
+
   return (
     <div>
       <Container className={"space-y-5"}>
@@ -32,7 +32,7 @@ function AdminHome() {
           <hr className="bg-[#FECE51] w-32 h-1" />
         </div>
 
-        <ExampleWithLocalizationProvider data={data} />
+        <ExampleWithLocalizationProvider data={isError ? [] : data} />
       </Container>
     </div>
   );

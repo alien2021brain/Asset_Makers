@@ -3,9 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart, signInSuccess, signInFailure } from "../redux/userSlice";
 import { Toaster, toast } from "sonner";
+
 export default function SignIn() {
   const [token, setToken] = useState("");
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const { loading, error } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -16,15 +20,7 @@ export default function SignIn() {
     });
   };
   const url = "http://localhost:8000";
-  // useEffect hook to update localStorage when token changes
-  // useEffect(() => {
-  //   if (token) {
-  //     localStorage.setItem("token", token);
-  //   } else {
-  //     localStorage.removeItem("token");
-  //   }
-  // }, [token]);
-  console.log("token", token);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

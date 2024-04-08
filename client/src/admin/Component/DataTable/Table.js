@@ -34,7 +34,7 @@ function Table({ data, handleClose, open, setOpen, mutation }) {
         id: "image", //id is still required when using accessorFn instead of accessorKey
         header: "Name",
         accessorKey: "name",
-        size: 250,
+        size: 80,
         Cell: ({ renderedCellValue, row }) => (
           <Box
             sx={{
@@ -62,6 +62,20 @@ function Table({ data, handleClose, open, setOpen, mutation }) {
         filterVariant: "autocomplete",
         header: "Description",
         size: 300,
+        Cell: ({ row }) => (
+          <div
+            style={{
+              maxWidth: "300px",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              // textOverflow: "ellipsis",
+            }}
+          >
+            <p>{row.original.description.split("\n")[0]}</p>
+            <p>{row.original.description.split("\n")[1]}</p>
+            .......
+          </div>
+        ),
       },
 
       {
@@ -69,7 +83,7 @@ function Table({ data, handleClose, open, setOpen, mutation }) {
         // filterVariant: 'range', //if not using filter modes feature, use this instead of filterFn
         filterFn: "between",
         header: "Price",
-        size: 100,
+        size: 50,
         //custom conditional format and styling
         Cell: ({ cell }) => (
           <Box
@@ -99,73 +113,73 @@ function Table({ data, handleClose, open, setOpen, mutation }) {
       {
         accessorKey: "category", //hey a simple column for once
         header: "Category",
-        size: 350,
+        size: 60,
       },
       {
         accessorKey: "address", //hey a simple column for once
         header: "Address",
-        size: 350,
+        size: 80,
       },
       {
         accessorKey: "citiName", //hey a simple column for once
         header: "City",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "size", //hey a simple column for once
         header: "Size",
-        size: 350,
+        size: 50,
         Cell: ({ renderedCellValue }) => <span>{renderedCellValue}sqrt</span>,
       },
       {
         accessorKey: "flore", //hey a simple column for once
         header: "Flore",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "type", //hey a simple column for once
         header: "Type",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "bathrooms", //hey a simple column for once
         header: "Bathrooms",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "bedrooms", //hey a simple column for once
         header: "Bedrooms",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "furnished", //hey a simple column for once
         header: "Furnished",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "parking", //hey a simple column for once
         header: "Parking",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "restaurant", //hey a simple column for once
         header: "Restaurant",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "bus", //hey a simple column for once
         header: "Bus",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "school", //hey a simple column for once
         header: "School",
-        size: 350,
+        size: 50,
       },
       {
         accessorKey: "username", //hey a simple column for once
         header: "Added By",
-        size: 350,
+        size: 50,
       },
 
       {

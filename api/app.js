@@ -8,6 +8,7 @@ var listingsRouter = require("./routes/listings");
 var usersRouter = require("./routes/users");
 var authRouter = require("./routes/auth");
 var cityRouter = require("./routes/city");
+var messageRouter = require("./routes/message");
 var cors = require("cors");
 const db = require("./connect");
 // const os = require("os");
@@ -30,10 +31,13 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
+
+// Routes
 app.use("/list", listingsRouter);
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/city", cityRouter);
+app.use("/message", messageRouter);
 
 // error handler
 app.use(function (err, req, res, next) {

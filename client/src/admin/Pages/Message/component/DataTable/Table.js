@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-
+import { queryClient } from "../../../../../index";
 //MRT Imports
 import {
   MaterialReactTable,
@@ -7,7 +7,7 @@ import {
   MRT_GlobalFilterTextField,
   MRT_ToggleFiltersButton,
 } from "material-react-table";
-
+import axios from "axios";
 //Material UI Imports
 import {
   Box,
@@ -17,110 +17,74 @@ import {
   Typography,
   lighten,
 } from "@mui/material";
-
+import { Link } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { toast, Toaster } from "sonner";
 //Icons Imports
-import { AccountCircle, Send } from "@mui/icons-material";
+import {
+  AccountCircle,
+  Delete,
+  Send,
+  TramSharp,
+  Web,
+} from "@mui/icons-material";
 
 //Mock Data
-import { data } from "./data";
+// import { data } from "./data";
 
-function Table() {
+function Table({ data }) {
+  console.log("queryClient", queryClient);
+  const mutation = useMutation({
+    mutationFn: (id) => {
+      console.log("id: " + id);
+      return axios.delete(`${process.env.REACT_APP_URL}/message/${id}`);
+    },
+    onSuccess: (res) => {
+      toast.success(res.data);
+      queryClient.invalidateQueries({ queryKey: ["messages"] });
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(err.message);
+    },
+  });
   const columns = useMemo(
     () => [
       {
-        id: "employee", //id used to define `group` column
-        header: "Property",
-        columns: [
-          {
-            accessorFn: (row) => `${row.firstName} ${row.lastName}`, //accessorFn used to join multiple data into a single cell
-            id: "name", //id is still required when using accessorFn instead of accessorKey
-            header: "Name",
-            size: 250,
-            Cell: ({ renderedCellValue, row }) => (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "1rem",
-                }}
-              >
-                <img
-                  alt="avatar"
-                  src={row.original.avatar}
-                  loading="lazy"
-                  style={{ borderRadius: "50%", height: "30px", width: "30px" }}
-                />
-                {/* using renderedCellValue instead of cell.getValue() preserves filter match highlighting */}
-                <span>{renderedCellValue}</span>
-              </Box>
-            ),
-          },
-          {
-            accessorKey: "email", //accessorKey used to define `data` column. `id` gets set to accessorKey automatically
-            enableClickToCopy: true,
-            filterVariant: "autocomplete",
-            header: "Email",
-            size: 300,
-          },
-        ],
+        id: "name",
+        accessorKey: "name",
+        header: "User Name",
+        enableClickToCopy: true,
+        size: 250,
       },
       {
-        id: "id",
-        header: "Job Info",
-        columns: [
-          {
-            accessorKey: "salary",
-            // filterVariant: 'range', //if not using filter modes feature, use this instead of filterFn
-            filterFn: "between",
-            header: "Price",
-            size: 200,
-            //custom conditional format and styling
-            Cell: ({ cell }) => (
-              <Box
-                component="span"
-                sx={(theme) => ({
-                  backgroundColor:
-                    cell.getValue() < 50_000
-                      ? theme.palette.error.dark
-                      : cell.getValue() >= 50_000 && cell.getValue() < 75_000
-                      ? theme.palette.warning.dark
-                      : theme.palette.success.dark,
-                  borderRadius: "0.25rem",
-                  color: "#fff",
-                  maxWidth: "9ch",
-                  p: "0.25rem",
-                })}
-              >
-                {cell.getValue()?.toLocaleString?.("en-US", {
-                  style: "currency",
-                  currency: "INR",
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 0,
-                })}
-              </Box>
-            ),
-          },
-          {
-            accessorKey: "jobTitle", //hey a simple column for once
-            header: "Property Name",
-            size: 350,
-          },
-          {
-            accessorFn: (row) => new Date(row.startDate), //convert to Date for sorting and filtering
-            id: "startdate",
-            header: "Added On",
-            filterVariant: "date",
-            filterFn: "lessThan",
-            sortingFn: "datetime",
-            Cell: ({ cell }) => cell.getValue()?.toLocaleDateString(), //render Date as a string
-            Header: ({ column }) => <em>{column.columnDef.header}</em>, //custom header markup
-            muiFilterTextFieldProps: {
-              sx: {
-                minWidth: "250px",
-              },
-            },
-          },
-        ],
+        accessorKey: "message",
+        enableClickToCopy: true,
+        filterVariant: "autocomplete",
+        header: "Message",
+        size: 300,
+        Cell: ({ row }) => <textarea rows={3} value={row.original.message} />,
+      },
+      {
+        accessorKey: "propertyName",
+        enableClickToCopy: true,
+        filterVariant: "autocomplete",
+        header: "Property Name",
+        size: 300,
+      },
+      {
+        accessorKey: "number",
+        enableClickToCopy: true,
+        filterVariant: "autocomplete",
+        header: "Contact No",
+        size: 300,
+      },
+      {
+        accessorKey: "email",
+        enableClickToCopy: true,
+        filterVariant: "autocomplete",
+        header: "Email",
+        size: 300,
       },
     ],
     []
@@ -161,7 +125,7 @@ function Table() {
     },
 
     // row action
-    renderRowActionMenuItems: ({ closeMenu }) => [
+    renderRowActionMenuItems: ({ closeMenu, row }) => [
       <MenuItem
         key={0}
         onClick={() => {
@@ -171,22 +135,25 @@ function Table() {
         sx={{ m: 0 }}
       >
         <ListItemIcon>
-          <AccountCircle />
+          <Web />
         </ListItemIcon>
-        View Profile
+        {/* ${process.env.REACT_APP_URL} */}
+        <Link to={`http://localhost:3000/${row.original.propertyId}`}>
+          Property Details
+        </Link>
       </MenuItem>,
       <MenuItem
         key={1}
         onClick={() => {
-          // Send email logic...
+          mutation.mutate(row.original.id);
           closeMenu();
         }}
         sx={{ m: 0 }}
       >
         <ListItemIcon>
-          <Send />
+          <Delete />
         </ListItemIcon>
-        Send Email
+        Delete Message
       </MenuItem>,
     ],
   });
@@ -194,6 +161,7 @@ function Table() {
   return (
     <div className="bg-black w-full mx-auto">
       <MaterialReactTable table={table} />
+      <Toaster richColors />
     </div>
   );
 }

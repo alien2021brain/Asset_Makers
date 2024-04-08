@@ -32,6 +32,7 @@ const ExampleWithLocalizationProvider = ({ data }) => {
     onSuccess: async (data) => {
       toast.success(data.message);
       handleClose();
+
       return queryClient.invalidateQueries({ queryKey: ["propertylist"] });
     },
     onError: (data) => {

@@ -199,13 +199,6 @@ const updateListItem = (req, res) => {
       return res.status(500).send("Internal Server Error");
     }
 
-    if (results.length > 0) {
-      // Listing with the same name or address already exists
-      return res
-        .status(400)
-        .send("A listing with the same name or address already exists.");
-    }
-
     db.query(q, propertyValues, (error, results, fields) => {
       if (error) {
         console.error("Error updating property: " + error.stack);

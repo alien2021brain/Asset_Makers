@@ -16,11 +16,20 @@ const register = (req, res) => {
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
 
-    const q = "INSERT INTO users (`username`,`email`,`password`) VALUE (?)";
-    const values = [req.body.username, req.body.email, hashedPassword];
+    const q =
+      "INSERT INTO users (`username`,`email`,`password`,`phoneno`) VALUE (?)";
+    const values = [
+      req.body.username,
+      req.body.email,
+      hashedPassword,
+      req.body.phoneNumber,
+    ];
 
     db.query(q, [values], (err, data) => {
-      if (err) return res.status(500).json(err);
+      if (err) {
+        console.log(err);
+        return res.status(500).send(err);
+      }
 
       //   search that user
       const q = "SELECT * FROM users WHERE username = ?";
@@ -49,8 +58,7 @@ const login = (req, res) => {
 
     if (!checkPassword)
       return res.status(400).json("Wrong password or username!");
-    if (!data[0].verified) return res.status(400).json("Check your email");
-    console.log(data[0], "data");
+
     const token = jwt.sign(
       { id: data[0].id, isAdmin: data[0].admin },
       process.env.JWT_KEY

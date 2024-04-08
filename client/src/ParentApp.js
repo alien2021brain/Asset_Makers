@@ -11,6 +11,7 @@ function ParentApp() {
       setToken(storedToken);
     }
   }, []);
+  console.log("token", token);
   // useEffect hook to include the token in all Axios requests
   useEffect(() => {
     // Set default headers for all Axios requests

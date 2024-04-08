@@ -126,9 +126,10 @@ function SingleProperty() {
   };
 
   // Add Property
-  const addProperty = async (data) => {
+  const addPropertyfun = async (data) => {
+    console.log(singleProperty, "single");
     try {
-      if (singleProperty.length > 0 && singleProperty.id) {
+      if (singleProperty.length > 0) {
         const res = await axios.patch(
           `http://localhost:8000/list/${singleProperty?.id}`,
           data
@@ -174,26 +175,49 @@ function SingleProperty() {
       // Add code to handle error (e.g., display error message)
     }
   };
+
   // posting property
-  const mutation = useMutation({
-    mutationFn: addProperty,
+  const addProperty = useMutation({
+    mutationFn: addPropertyfun,
+
     onSuccess: async (data) => {
       const propertyId = data.data;
 
-      // update
-      if (singleProperty.id && propertyId) {
-        toast.success(propertyId);
-        queryClient.invalidateQueries({ queryKey: ["propertylist"] });
-        navigate("/admin");
-      } else if (propertyId) {
-        console.log("prpertyId", propertyId);
-        const res = await handleImageUplaod(propertyId);
-        if (res.data) {
-          toast.success(res.data);
-          queryClient.invalidateQueries({ queryKey: ["propertylist"] });
-          navigate("/admin");
-        }
-      }
+      console.log("prpertyId", propertyId);
+      const res = await handleImageUplaod(propertyId);
+
+      toast.success(res.data);
+      queryClient.invalidateQueries({ queryKey: ["propertylist"] });
+      navigate("/admin");
+    },
+  });
+
+  // Update
+  const updatePropertyfun = async (data) => {
+    console.log(singleProperty, "single");
+    try {
+      const res = await axios.patch(
+        `http://localhost:8000/list/${singleProperty?.id}`,
+        data
+      );
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data);
+    }
+  };
+
+  const updateProperty = useMutation({
+    mutationFn: updatePropertyfun,
+
+    onSuccess: (data) => {
+      toast.success(data);
+      queryClient.invalidateQueries({ queryKey: ["propertylist"] });
+      navigate("/admin");
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error("Internal error in updating");
     },
   });
   // Dialog Close
@@ -644,7 +668,9 @@ function SingleProperty() {
             className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             onClick={(e) => {
               e.preventDefault();
-              mutation.mutate(property);
+              singleProperty.id
+                ? updateProperty.mutate(property)
+                : addProperty.mutate(property);
             }}
           >
             {form.button}
